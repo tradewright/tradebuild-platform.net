@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <MyType>Windows</MyType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3CFB1D7F-6D85-4AAB-AF2F-91BD38BDA14E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>TradeBuild.StudiesUI</AssemblyName>
+    <OutputType>Library</OutputType>
+    <AssemblyMajorVersion>2</AssemblyMajorVersion>
+    <AssemblyMinorVersion>6</AssemblyMinorVersion>
+    <AssemblyRevisionNumber>214</AssemblyRevisionNumber>
+    <GenerateRevisionNumber>True</GenerateRevisionNumber>
+    <AssemblyCompanyName>TradeWright Software Systems</AssemblyCompanyName>
+    <StartWithIE>False</StartWithIE>
+    <RootNamespace>TradeWright.Trading.UI.Studies</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OptionStrict>On</OptionStrict>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>TradeBuild.StudiesUI.xml</DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <DefineDebug>True</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <BaseAddress>1906835456</BaseAddress>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\bin\</OutputPath>
+    <DocumentationFile>TradeBuild.StudiesUI.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <DefineDebug>False</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxChartSkil27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.AxChartSkil27.dll</HintPath>
+    </Reference>
+    <Reference Include="ChartSkil27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.ChartSkil27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC\stdole\7.0.3300.0__b03f5f7f11d50a3a\stdole.dll</HintPath>
+    </Reference>
+    <Reference Include="StudyUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.StudyUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <!--
+    <COMReference Include="Scripting">
+      <Guid>{420B2830-E718-11CF-893D-00A0C9054228}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <Lcid>0</Lcid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+-->
+    <Reference Include="TWUtilities40">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TWUtilities40.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="ColorPicker.Designer.vb">
+      <DependentUpon>ColorPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fSimpleColorPicker.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>fSimpleColorPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fSimpleColorPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fStudyConfigurer.Designer.vb">
+      <DependentUpon>fStudyConfigurer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fStudyConfigurer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Globals.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StudiesUI.vb" />
+    <Compile Include="StudyConfigurer.Designer.vb">
+      <DependentUpon>StudyConfigurer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyConfigurer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudyConfigurerInputLine.Designer.vb">
+      <DependentUpon>StudyConfigurerInputLine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyConfigurerInputLine.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudyConfigurerParameterLine.Designer.vb">
+      <DependentUpon>StudyConfigurerParameterLine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyConfigurerParameterLine.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudyConfigurerValueLine.Designer.vb">
+      <DependentUpon>StudyConfigurerValueLine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyConfigurerValueLine.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudyLibConfigurer.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>StudyLibConfigurer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyLibConfigurer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudyPicker.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>StudyPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudyPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <EmbeddedResource Include="ColorPicker.resx">
+      <DependentUpon>ColorPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fSimpleColorPicker.resX">
+      <DependentUpon>fSimpleColorPicker.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fStudyConfigurer.resx">
+      <DependentUpon>fStudyConfigurer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyConfigurer.resx">
+      <DependentUpon>StudyConfigurer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyConfigurerInputLine.resx">
+      <DependentUpon>StudyConfigurerInputLine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyConfigurerParameterLine.resx">
+      <DependentUpon>StudyConfigurerParameterLine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyConfigurerValueLine.resx">
+      <DependentUpon>StudyConfigurerValueLine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyLibConfigurer.resX">
+      <DependentUpon>StudyLibConfigurer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyPicker.resX">
+      <DependentUpon>StudyPicker.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="StudiesUI.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChartUtils\ChartUtils.vbproj">
+      <Project>{dea7a457-89e0-465a-9353-402ff185ce23}</Project>
+      <Name>ChartUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
