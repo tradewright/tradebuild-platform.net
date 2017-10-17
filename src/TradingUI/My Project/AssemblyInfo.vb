@@ -39,9 +39,9 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("TradeWright Software Systems")>
 <Assembly: AssemblyProduct("TradeBuild TradingUI")>
 <Assembly: AssemblyCopyright("Copyright © Richard L King (TradeWright Software Systems) 2017")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("")>
 
-<Assembly: ComVisible(True)> 
+<Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
 <Assembly: Guid("2a78740d-aa64-4175-af1f-dc805f19173f")>
