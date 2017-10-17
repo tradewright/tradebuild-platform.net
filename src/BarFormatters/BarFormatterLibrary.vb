@@ -26,50 +26,48 @@
 
 Public MustInherit Class BarFormatterLibrary
 
-    '@================================================================================
-    ' Events
-    '@================================================================================
+#Region "Events"
 
-    '@================================================================================
-    ' Enums
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Types
-    '@================================================================================
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
 
     Private Structure FactoryEntry
         Dim Name As String
         Dim FactoryType As Type
     End Structure
 
-    '@================================================================================
-    ' Constants
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Member variables
-    '@================================================================================
+#Region "Constants"
+
+#End Region
+
+#Region "Member variables"
 
     Private mName As String
 
     Private mFactories As New List(Of FactoryEntry)
 
-    '@================================================================================
-    ' Constructors
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' XXXX Interface Members
-    '@================================================================================
+#Region "Constructors"
 
-    '@================================================================================
-    ' XXXX Event Handlers
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Properties
-    '@================================================================================
+#Region "XXXX Interface Members"
+
+#End Region
+
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
     Property Name() As String
         Get
@@ -80,9 +78,9 @@ Public MustInherit Class BarFormatterLibrary
         End Set
     End Property
 
-    '@================================================================================
-    ' Methods
-    '@================================================================================
+#End Region
+
+#Region "Methods"
 
     Public Function CreateFactory(name As String) As IBarFormatterFactory
         For Each factory In mFactories
@@ -101,8 +99,10 @@ Public MustInherit Class BarFormatterLibrary
         mFactories.Add(New FactoryEntry With {.Name = name, .FactoryType = type})
     End Sub
 
-    '@================================================================================
-    ' Helper Functions
-    '@================================================================================
+#End Region
+
+#Region "Helper Functions"
+
+#End Region
 
 End Class

@@ -34,31 +34,29 @@ Public Class BarFormatterLibConfigurer
 
     Implements System.Windows.Forms.IButtonControl
 
-    '@================================================================================
-    ' Interfaces
-    '@================================================================================
+#Region "Interfaces"
 
-    '@================================================================================
-    ' Events
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Enums
-    '@================================================================================
+#Region "Events"
 
-    '@================================================================================
-    ' Types
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Constants
-    '@================================================================================
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
+
+#End Region
+
+#Region "Constants"
 
     Private Const NewBarFormatterLibraryName As String = "New BarFormatter library"
 
-    '@================================================================================
-    ' Member variables
-    '@================================================================================
+#End Region
+
+#Region "Member variables"
 
     Private mConfig As ConfigurationSection
 
@@ -72,9 +70,9 @@ Public Class BarFormatterLibConfigurer
 
     Private mReadOnly As Boolean
 
-    '@================================================================================
-    ' Constructors
-    '@================================================================================
+#End Region
+
+#Region "Constructors"
 
     Private Sub UserControl_Initialize()
         MyBase.Width = 500
@@ -90,9 +88,9 @@ Public Class BarFormatterLibConfigurer
         MyBase.Height = 267
     End Sub
 
-    '@================================================================================
-    ' IButtonControl Interface Members
-    '@================================================================================
+#End Region
+
+#Region "IButtonControl Interface Members"
 
     Public Property DialogResult() As System.Windows.Forms.DialogResult Implements System.Windows.Forms.IButtonControl.DialogResult
         Get
@@ -111,9 +109,9 @@ Public Class BarFormatterLibConfigurer
         ApplyButton.PerformClick()
     End Sub
 
-    '@================================================================================
-    ' Control Event Handlers
-    '@================================================================================
+#End Region
+
+#Region "Control Event Handlers"
 
     Private Sub AddButton_Click(eventSender As System.Object, eventArgs As System.EventArgs) Handles AddButton.Click
         Dim newName As String
@@ -333,13 +331,13 @@ Public Class BarFormatterLibConfigurer
         setUpButton()
     End Sub
 
-    '@================================================================================
-    ' XXXX Event Handlers
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Properties
-    '@================================================================================
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
     Public ReadOnly Property Dirty() As Boolean
         Get
@@ -347,9 +345,9 @@ Public Class BarFormatterLibConfigurer
         End Get
     End Property
 
-    '@================================================================================
-    ' Methods
-    '@================================================================================
+#End Region
+
+#Region "Methods"
 
     Public Function ApplyChanges() As Boolean
         If applyProperties() Then
@@ -372,9 +370,9 @@ Public Class BarFormatterLibConfigurer
         If mReadOnly Then disableControls()
     End Sub
 
-    '@================================================================================
-    ' Helper Functions
-    '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
     Private Function applyProperties() As Boolean
         If mCurrSL Is Nothing Then
@@ -561,5 +559,7 @@ Public Class BarFormatterLibConfigurer
         Next
         UpButton.Enabled = False
     End Sub
+
+#End Region
 
 End Class

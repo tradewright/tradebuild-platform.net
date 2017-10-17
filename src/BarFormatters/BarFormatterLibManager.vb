@@ -28,35 +28,33 @@ Imports System.Collections.Generic
 Imports TWUtilities40
 
 Public Class BarFormatterLibManager
-    '@================================================================================
-    ' Interfaces
-    '@================================================================================
+#Region "Interfaces"
 
-    '@================================================================================
-    ' Events
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Enums
-    '@================================================================================
+#Region "Events"
 
-    '@================================================================================
-    ' Types
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' Constants
-    '@================================================================================
+#Region "Enums"
 
-    '@================================================================================
-    ' Class variables
-    '@================================================================================
+#End Region
+
+#Region "Types"
+
+#End Region
+
+#Region "Constants"
+
+#End Region
+
+#Region "Class variables"
 
     Private Shared sLibManager As BarFormatterLibManager = New BarFormatterLibManager
 
-    '@================================================================================
-    ' Member variables
-    '@================================================================================
+#End Region
+
+#Region "Member variables"
 
     Private mLibrariesList As New List(Of BarFormatterLibrary)
     Private mLibrariesIndex As New Dictionary(Of String, Integer)
@@ -64,24 +62,24 @@ Public Class BarFormatterLibManager
     Private mConfig As ConfigurationSection
     Private mLibsConfig As ConfigurationSection
 
-    '@================================================================================
-    ' Constructors
-    '@================================================================================
+#End Region
+
+#Region "Constructors"
 
     Private Sub New()
     End Sub
 
-    '@================================================================================
-    ' XXXX Interface Members
-    '@================================================================================
+#End Region
 
-    '@================================================================================
-    ' XXXX Event Handlers
-    '@================================================================================
+#Region "XXXX Interface Members"
 
-    '@================================================================================
-    ' Properties
-    '@================================================================================
+#End Region
+
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
     Friend ReadOnly Property AvailableBarFormatterFactories() As List(Of BarFormatterFactoryListEntry)
         Get
@@ -108,9 +106,9 @@ Public Class BarFormatterLibManager
         End Get
     End Property
 
-    '@================================================================================
-    ' Methods
-    '@================================================================================
+#End Region
+
+#Region "Methods"
 
     Friend Function Add(library As BarFormatterLibrary, name As String) As BarFormatterLibrary
         If name <> "" Then library.Name = name
@@ -202,9 +200,9 @@ Public Class BarFormatterLibManager
         mLibrariesIndex.Clear()
     End Sub
 
-    '@================================================================================
-    ' Helper Functions
-    '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
     Private Sub loadBarFormatterLibs()
         Dim cs As ConfigurationSection
@@ -237,5 +235,7 @@ Public Class BarFormatterLibManager
     Private Sub removeLibraryFromConfig(library As BarFormatterLibrary)
         If mConfig IsNot Nothing Then mLibsConfig.RemoveConfigurationSection(BarFormatters.ConfigSectionBarFormatterLibrary & "(" & library.Name & ")")
     End Sub
+
+#End Region
 
 End Class
