@@ -1,0 +1,284 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <MyType>Windows</MyType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CC6E9C6A-3913-40F3-9C41-F34AA22D0212}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>TradeBuild.StrategyUtils</AssemblyName>
+    <OutputType>Library</OutputType>
+    <AssemblyMajorVersion>2</AssemblyMajorVersion>
+    <AssemblyMinorVersion>7</AssemblyMinorVersion>
+    <AssemblyRevisionNumber>224</AssemblyRevisionNumber>
+    <GenerateRevisionNumber>False</GenerateRevisionNumber>
+    <AssemblyCompanyName>Fastlor Ltd</AssemblyCompanyName>
+    <StartWithIE>False</StartWithIE>
+    <RootNamespace>TradeWright.Trading.TradeBuild.AutoTradingEnvironment</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TradeBuild.StrategyUtils.xml</DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <DefineDebug>True</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>TradeBuild.StrategyUtils.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <DefineDebug>False</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.BarUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CommonStudiesLib27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.CommonStudiesLib27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ContractUtils27, Version=448.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.ContractUtils27.dll</HintPath>
+    </Reference>
+    <Reference Include="HistDataUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.HistDataUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MarketDataUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.MarketDataUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="OrderUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.OrderUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SessionUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.SessionUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="StudyUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.StudyUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="Scripting">
+      <Guid>{420B2830-E718-11CF-893D-00A0C9054228}</Guid>
+      <Lcid>0</Lcid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <Reference Include="TickerUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TickerUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TickfileUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TickfileUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TickUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TickUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TimeframeUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TimeframeUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TWUtilities40">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TWUtilities40.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.Compatibility" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="Bars.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BollingerBands.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BracketOrder.vb" />
+    <Compile Include="BracketOrderNotifyReqs.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Contexts.vb" />
+    <Compile Include="Declarators.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DefaultStrategyHost.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DefaultStrategyHostController.vb" />
+    <Compile Include="DefaultStrategyHostModel.vb" />
+    <Compile Include="Enums.vb" />
+    <Compile Include="Environment.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IBracketOrderEventSink.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InitialisationContext.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPositionManagementStrategy.vb" />
+    <Compile Include="IPositionManagementStrategyFactory.vb" />
+    <Compile Include="IStrategy.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStrategyHost.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStrategyHostController.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStrategyHostModel.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IStrategyHostView.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MACD.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NotificationRequest.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OrderContext.vb" />
+    <Compile Include="Orders.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OrderSpecifier.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Quote.vb" />
+    <Compile Include="Quotes.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceContext.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SingleInstrumentStrategyBase.vb" />
+    <Compile Include="SMA.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StrategyRunner.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StrategyUtils.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Study.vb" />
+    <Compile Include="Swing.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Timeframe.vb" />
+    <Compile Include="TradingContext.vb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContractUtils\ContractUtils.vbproj">
+      <Project>{301a611a-0292-4466-a296-e6d310e433fe}</Project>
+      <Name>ContractUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SessionUtils\SessionUtils.vbproj">
+      <Project>{f8b22f2a-4d0e-4ed0-bb80-f6ac14f93d84}</Project>
+      <Name>SessionUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StrategyUtils.licenseheader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
