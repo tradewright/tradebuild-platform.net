@@ -31,13 +31,11 @@ Imports TradeWright.Utilities.Time
 
 <TestClass()> Public Class SessionUtilsTests
 
-    '@================================================================================
-    ' Setup Functions
-    '@================================================================================
+#Region "Setup Functions"
 
-    '@================================================================================
-    ' Test Methods
-    '@================================================================================
+#End Region
+
+#Region "Test Methods"
 
     <TestClass()> Public Class TestGetOffsetSessionTimes
 
@@ -288,6 +286,8 @@ Imports TradeWright.Utilities.Time
                     TimestampFormats.DateAndTimeISO8601))
         End Sub
 
+#End Region
+
     End Class
 
     <TestClass()> Public Class TestFromCOM
@@ -325,12 +325,12 @@ Imports TradeWright.Utilities.Time
     End Class
 
 
-    '@================================================================================
-    ' Helper Functions
-    '@================================================================================
+#Region "Helper Functions"
 
 
 
 
+
+#End Region
 
 End Class

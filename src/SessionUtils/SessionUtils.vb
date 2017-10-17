@@ -50,9 +50,7 @@ Namespace Sessions
 
     Public Module SessionUtils
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#Region "Member variables"
 
         Public StartOfDayAsDate As Date = Date.FromOADate(0.0)
 
@@ -62,26 +60,26 @@ Namespace Sessions
 
         Friend TW As New TWUtilities40.TWUtilities
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
 
-        '@================================================================================
-        ' XXXX Interface Members
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' XXXX Event Handlers
-        '@================================================================================
+#Region "XXXX Interface Members"
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
+
+#End Region
+
+#Region "Methods"
 
         Public Function CreateSessionBuilderFuture(pSessionFuture As IFuture) As _IFuture
             Dim lBuilder As New SessionBuilderFutureBuilder
@@ -196,13 +194,15 @@ Namespace Sessions
             Return New TimeSpan(time.Hours, time.Minutes, 0)
         End Function
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
         Private Function sessionSpansMidnight(pStartTime As TimeSpan, pEndTime As TimeSpan) As Boolean
             sessionSpansMidnight = (pStartTime > pEndTime)
         End Function
+
+#End Region
 
     End Module
 End Namespace
