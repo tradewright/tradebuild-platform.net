@@ -35,31 +35,29 @@ Namespace Contracts
         Implements IContractSpecifier
         Implements ContractUtils27.IContractSpecifier
 
-        '@================================================================================
-        ' Description
-        '@================================================================================
+#Region "Description"
         
         '
-        '@================================================================================
-        ' Amendment history
-        '@================================================================================
+#End Region
+
+#Region "Amendment history"
         
         '
         '
         '
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#End Region
+
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
         
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Friend Const ConfigSettingContractSpecCurrency As String = "&Currency"
         Friend Const ConfigSettingContractSpecExpiry As String = "&Expiry"
@@ -71,17 +69,17 @@ Namespace Contracts
         Friend Const ConfigSettingContractSpecStrikePrice As String = "&StrikePrice"
         Friend Const ConfigSettingContractSpecSymbol As String = "&Symbol"
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Types"
         
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mSymbol As String
         Private mSecType As SecurityType
@@ -96,9 +94,9 @@ Namespace Contracts
 
         'Private mComContractSpec As ContractUtils27._IContractSpecifier
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         ' need to allow the ComboContractSpecBuilder to create an empty ContractSpecifier
         Friend Sub New()
@@ -188,9 +186,9 @@ Namespace Contracts
             Return specifier
         End Function
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         <DataMember>
         Public Property ComboLegs() As IComboLegs Implements IContractSpecifier.ComboLegs
@@ -324,9 +322,9 @@ Namespace Contracts
             End Set
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Shared Function ContractSpecsEqual(pContractSpec1 As IContractSpecifier, pContractSpec2 As IContractSpecifier) As Boolean
             If pContractSpec1 Is Nothing Then Return False
@@ -460,9 +458,11 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
 
-    End Class
+#Region "Helper Functions"
+
+#End Region
+
+End Class
 End Namespace

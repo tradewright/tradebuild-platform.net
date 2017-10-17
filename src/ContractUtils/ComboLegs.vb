@@ -32,67 +32,65 @@ Namespace Contracts
     Public NotInheritable Class ComboLegs
         Implements IComboLegs
 
-        '@================================================================================
-        ' Description
-        '@================================================================================
+#Region "Description"
         
         '
-        '@================================================================================
-        ' Amendment history
-        '@================================================================================
+#End Region
+
+#Region "Amendment history"
         
         '
         '
         '
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#End Region
+
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
 
         Public Event CollectionChanged(sender As Object, e As Specialized.NotifyCollectionChangedEventArgs) Implements Specialized.INotifyCollectionChanged.CollectionChanged
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
-        
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#Region "Types"
+        
+#End Region
+
+#Region "Constants"
+
+#End Region
+
+#Region "Member variables"
 
         <DataMember>
         Private WithEvents mComboLegs As ObservableCollection(Of IComboleg) = New ObservableCollection(Of IComboleg)
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Friend Sub New()
         End Sub
 
-        '@================================================================================
-        ' mComboLegs Event Handlers
-        '@================================================================================
+#End Region
+
+#Region "mComboLegs Event Handlers"
         
         Private Sub mComboLegs_CollectionChanged(sender As Object, e As Specialized.NotifyCollectionChangedEventArgs) Handles mComboLegs.CollectionChanged
             RaiseEvent CollectionChanged(Me, e)
         End Sub
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         Public ReadOnly Property Count() As Integer Implements IComboLegs.Count
             Get
@@ -100,9 +98,9 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Friend Sub Add(pComboLeg As IComboleg)
             mComboLegs.Add(pComboLeg)
@@ -139,9 +137,11 @@ Namespace Contracts
             Return s
         End Function
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
 
-    End Class
+#Region "Helper Functions"
+
+#End Region
+
+End Class
 End Namespace

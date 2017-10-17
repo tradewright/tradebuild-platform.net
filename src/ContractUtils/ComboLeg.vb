@@ -39,9 +39,7 @@ Namespace Contracts
             Ratio = pRatio
         End Sub
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#Region "Properties"
 
         <DataMember()>
         Public ReadOnly Property ContractSpec() As IContractSpecifier Implements IComboleg.ContractSpec
@@ -52,16 +50,18 @@ Namespace Contracts
         <DataMember()>
         Public ReadOnly Property Ratio() As Integer Implements IComboleg.Ratio
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Overrides Function ToString() As String
             Return $"action={If(IsBuyLeg, "BUY", "SELL")}; ratio={Ratio}; contractSpec=({ContractSpec.ToString()})"
         End Function
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
-    End Class
+#End Region
+
+#Region "Helper Functions"
+#End Region
+
+End Class
 End Namespace

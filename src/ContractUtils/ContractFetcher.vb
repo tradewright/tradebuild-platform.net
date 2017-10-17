@@ -63,32 +63,30 @@ Namespace Contracts
             Implements IContractFetchListener
             Implements ITask
 
-            '@================================================================================
-            ' Interfaces
-            '@================================================================================
+#Region "Interfaces"
 
 
-            '@================================================================================
-            ' Events
-            '@================================================================================
+#End Region
+
+#Region "Events"
             
-            '@================================================================================
-            ' Enums
-            '@================================================================================
+#End Region
+
+#Region "Enums"
             
-            '@================================================================================
-            ' Types
-            '@================================================================================
+#End Region
+
+#Region "Types"
             
-            '@================================================================================
-            ' Constants
-            '@================================================================================
+#End Region
+
+#Region "Constants"
 
             Private Const ModuleName As String = "ContractFetchTask"
 
-            '@================================================================================
-            ' Member variables
-            '@================================================================================
+#End Region
+
+#Region "Member variables"
 
             Private mPrimaryContractStore As IContractStore
             Private mSecondaryContractStore As IContractStore
@@ -112,13 +110,13 @@ Namespace Contracts
 
             Private mContractsBuilder As New ContractsBuilder
 
-            '@================================================================================
-            ' Constructors
-            '@================================================================================
+#End Region
+
+#Region "Constructors"
             
-            '@================================================================================
-            ' IContractFetchListener Interface Members
-            '@================================================================================
+#End Region
+
+#Region "IContractFetchListener Interface Members"
 
             Private Sub IContractFetchListener_FetchCancelled(pCookie As Object) Implements IContractFetchListener.FetchCancelled
                 If Not futureIsPending() Then Exit Sub
@@ -186,9 +184,9 @@ Namespace Contracts
                 If Not mListener Is Nothing Then mListener.NotifyContract(pCookie, pContract)
             End Sub
 
-            '@================================================================================
-            ' ITask Interface Members
-            '@================================================================================
+#End Region
+
+#Region "ITask Interface Members"
 
             Private Sub Task_Cancel() Implements ITask.Cancel
             End Sub
@@ -217,9 +215,9 @@ Namespace Contracts
                 End Get
             End Property
 
-            '@================================================================================
-            ' Properties
-            '@================================================================================
+#End Region
+
+#Region "Properties"
 
             Friend ReadOnly Property ContractFuture() As IFuture
                 Get
@@ -233,9 +231,9 @@ Namespace Contracts
                 End Get
             End Property
 
-            '@================================================================================
-            ' mContractFutureBuilder Handlers
-            '@================================================================================
+#End Region
+
+#Region "mContractFutureBuilder Handlers"
 
             Private Sub mContractFutureBuilder_Cancelled(ByRef ev As CancelledEventData) Handles mContractFutureBuilder.Cancelled
                 If Not mFetchFuture Is Nothing Then mFetchFuture.Cancel()
@@ -243,9 +241,9 @@ Namespace Contracts
                 mTaskContext.Finish(Nothing, True)
             End Sub
 
-            '@================================================================================
-            ' mContractsFutureBuilder Handlers
-            '@================================================================================
+#End Region
+
+#Region "mContractsFutureBuilder Handlers"
 
             Private Sub mContractsFutureBuilder_Cancelled(ByRef ev As CancelledEventData) Handles mContractsFutureBuilder.Cancelled
                 If Not mFetchFuture Is Nothing Then mFetchFuture.Cancel()
@@ -253,9 +251,9 @@ Namespace Contracts
                 mTaskContext.Finish(Nothing, True)
             End Sub
 
-            '@================================================================================
-            ' Methods
-            '@================================================================================
+#End Region
+
+#Region "Methods"
 
             Friend Sub Initialise(pContractSpec As IContractSpecifier, pPrimaryContractStore As IContractStore, pSecondaryContractStore As IContractStore, pCookie As Object, pListener As IContractFetchListener, pSingleContractOnly As Boolean)
                 mContractSpec = pContractSpec
@@ -276,9 +274,9 @@ Namespace Contracts
                 End If
             End Sub
 
-            '@================================================================================
-            ' Helper Functions
-            '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
             Private Function futureIsPending() As Boolean
                 If mSingleContractOnly Then
@@ -297,7 +295,9 @@ Namespace Contracts
                     trySecondaryContractSP = True
                 End If
             End Function
-        End Class
+#End Region
+
+End Class
 
     End Class
 

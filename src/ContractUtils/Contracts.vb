@@ -34,47 +34,45 @@ Namespace Contracts
         Implements IEnumerable(Of IContract)
 
 
-        '@================================================================================
-        ' Description
-        '@================================================================================
+#Region "Description"
         
         '
-        '@================================================================================
-        ' Amendment history
-        '@================================================================================
+#End Region
+
+#Region "Amendment history"
         
         '
         '
         '
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#End Region
+
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
 
         Event CollectionChanged(ByRef ev As CollectionChangeEventData)
 
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "Contracts"
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Types"
         
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mContracts As SortedDictionary(Of ContractComparable, IContract) = New SortedDictionary(Of ContractComparable, IContract)
 
@@ -82,9 +80,9 @@ Namespace Contracts
 
         Private mSortKeys() As ContractSortKeyId
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Public Sub New()
             ReDim mSortKeys(7)
@@ -98,9 +96,9 @@ Namespace Contracts
             mSortKeys(7) = ContractSortKeyId.Right
         End Sub
 
-        '@================================================================================
-        ' IContracts Interface Members
-        '@================================================================================
+#End Region
+
+#Region "IContracts Interface Members"
 
         Public Sub AddCollectionChangeListener(pListener As ICollectionChangeListener) Implements IContracts.AddCollectionChangeListener
             mChangeListeners.Add(pListener)
@@ -143,9 +141,9 @@ Namespace Contracts
             End Set
         End Property
 
-        '@================================================================================
-        ' IEnumerable(Of IContract) Interface Members
-        '@================================================================================
+#End Region
+
+#Region "IEnumerable(Of IContract) Interface Members"
 
         Public Function GetEnumerator() As IEnumerator(Of IContract) Implements IEnumerable(Of IContract).GetEnumerator
             Return mContracts.Values.GetEnumerator
@@ -155,17 +153,17 @@ Namespace Contracts
             Return GetEnumerator()
         End Function
 
-        '@================================================================================
-        ' xxxx Event Handlers
-        '@================================================================================
-        
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#Region "xxxx Event Handlers"
+        
+#End Region
+
+#Region "Properties"
+
+#End Region
+
+#Region "Methods"
 
         Friend Sub Add(pContract As IContract)
             AddContract(mContracts, pContract)
@@ -180,9 +178,9 @@ Namespace Contracts
             Return s
         End Function
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
         Private Sub AddContract(pContracts As SortedDictionary(Of ContractComparable, IContract), pContract As IContract)
             pContracts.Add(createComparable(pContract.Specifier), pContract)
@@ -233,5 +231,7 @@ Namespace Contracts
             mContracts = newContracts
         End Sub
 
-    End Class
+#End Region
+
+End Class
 End Namespace

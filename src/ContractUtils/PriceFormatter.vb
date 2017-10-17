@@ -30,30 +30,28 @@ Imports System.Text.RegularExpressions
 Namespace Contracts
     Public NotInheritable Class PriceFormatter
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#Region "Events"
 
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
 
         Private Structure TickSizePatternEntry
             Dim TickSize As Double
             Dim Pattern As String
         End Structure
 
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Public Const OneTenth As Double = 0.01
         Public Const OneHalf As Double = 0.5
@@ -64,9 +62,9 @@ Namespace Contracts
         Public Const OneSixtyFourth As Double = 0.015625
         Public Const OneHundredTwentyEighth As Double = 0.0078125
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mPriceFormatStrings As New List(Of TickSizePatternEntry)
 
@@ -97,9 +95,9 @@ Namespace Contracts
         Private mExactSixtyFourthIndicators() As String = {"", "''"}
         Private mHalfSixtyFourthIndicators() As String = {"+", "5"}
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Public Sub New()
             generate32ndsAndFractionsPattern(mThirtySecondsAndFractionsSeparators, mThirtySecondsAndFractionsTerminators, mExactThirtySecondIndicators, mQuarterThirtySecondIndicators, mHalfThirtySecondIndicators, mThreeQuarterThirtySecondIndicators)
@@ -108,17 +106,17 @@ Namespace Contracts
             generate64thsPattern(mSixtyFourthsSeparators, mSixtyFourthsTerminators)
         End Sub
 
-        '@================================================================================
-        ' XXXX Interface Members
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' XXXX Event Handlers
-        '@================================================================================
+#Region "XXXX Interface Members"
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
         Public ReadOnly Property DefaultExactSixtyFourthIndicator() As String
             Get
@@ -368,9 +366,9 @@ Namespace Contracts
             End Set
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Function FormatPrice(pPrice As Double, pSecType As SecurityType, pTickSize As Double) As String
             ' see http://www.cmegroup.com/trading/interest-rates/files/TreasuryFuturesPriceRoundingConventions_Mar_24_Final.pdf
@@ -528,9 +526,9 @@ Namespace Contracts
             Return False
         End Function
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
         Private Function generatePriceFormatString(pTickSize As Double) As String
             Dim lNumberOfDecimals = pTickSize.ToString("0.##############").Length - 2
@@ -672,5 +670,7 @@ Namespace Contracts
             Return False
         End Function
 
-    End Class
+#End Region
+
+End Class
 End Namespace

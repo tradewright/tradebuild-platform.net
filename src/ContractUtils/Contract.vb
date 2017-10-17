@@ -41,31 +41,29 @@ Namespace Contracts
         Implements IStringable
         Implements ContractUtils27.IContract
 
-        '@================================================================================
-        ' Description
-        '@================================================================================
+#Region "Description"
         
         '
-        '@================================================================================
-        ' Amendment history
-        '@================================================================================
+#End Region
+
+#Region "Amendment history"
         
         '
         '
         '
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#End Region
+
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
         
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "Contract"
 
@@ -80,17 +78,17 @@ Namespace Contracts
         Friend Const ConfigSettingTickSize As String = "&TickSize"
         Friend Const ConfigSettingTimezoneName As String = "&Timezone"
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Types"
         
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mSpecifier As IContractSpecifier
         Private mTickSize As Double
@@ -105,9 +103,9 @@ Namespace Contracts
 
         'Private mComContract As ContractUtils27._IContract
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Private Sub New()
         End Sub
@@ -147,9 +145,9 @@ Namespace Contracts
             Return contract
         End Function
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         'Friend ReadOnly Property ComContract As ContractUtils27._IContract
         '    Get
@@ -291,25 +289,25 @@ Namespace Contracts
             End Set
         End Property
 
-        '@================================================================================
-        ' IJSONable Interface Members
-        '@================================================================================
+#End Region
+
+#Region "IJSONable Interface Members"
 
         Private Function JSONable_ToJSON() As String Implements IJSONable.ToJSON
             JSONable_ToJSON = ToJSON()
         End Function
 
-        '@================================================================================
-        ' Stringable Interface Members
-        '@================================================================================
+#End Region
+
+#Region "Stringable Interface Members"
 
         Private Function Stringable_ToString() As String Implements IStringable.ToString
             Return ToString()
         End Function
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Shared Function ContractSpecsCompatible(pContractSpec1 As IContractSpecifier, pContractSpec2 As IContractSpecifier) As Boolean
 
@@ -705,8 +703,10 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
-    End Class
+#End Region
+
+#Region "Helper Functions"
+#End Region
+
+End Class
 End Namespace

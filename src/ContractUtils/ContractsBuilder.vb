@@ -28,42 +28,40 @@ Namespace Contracts
     Public NotInheritable Class ContractsBuilder
         Implements IContractsBuilder
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#Region "Events"
 
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
+
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "ContractsBuilder"
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mContracts As New Contracts
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' IContractsBuilder Interface Members
-        '@================================================================================
+#Region "Constructors"
+
+#End Region
+
+#Region "IContractsBuilder Interface Members"
 
         Private Sub IContractsBuilder_Add(pContract As IContract) Implements IContractsBuilder.Add
             'AssertArgument gContractSpecsCompatible(mContracts.ContractSpecifier, pContract.Specifier), "Contract not compatible with contract spec"
@@ -76,13 +74,13 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' XXXX Event Handlers
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
         Public ReadOnly Property Contracts() As Contracts
             Get
@@ -90,9 +88,9 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Sub Add(pContract As IContract)
             mContracts.Add(pContract)
@@ -112,8 +110,10 @@ Namespace Contracts
         'gHandleUnexpectedError ProcName, ModuleName
         'End Sub
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
+#End Region
+
     End Class
 End Namespace

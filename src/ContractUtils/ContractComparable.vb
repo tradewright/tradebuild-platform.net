@@ -28,48 +28,46 @@ Namespace Contracts
     Friend NotInheritable Class ContractComparable
         Implements IComparable
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
 
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
         
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Types"
         
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "ContractComparable"
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mSortKeys() As ContractSortKeyId
         Private mContractSpec As IContractSpecifier
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
         
         Friend Sub New(pContractSpec As IContractSpecifier, ByRef pSortkeys() As ContractSortKeyId)
             mContractSpec = pContractSpec
             mSortKeys = pSortkeys
         End Sub
 
-        '@================================================================================
-        ' IComparable Interface Members
-        '@================================================================================
+#End Region
+
+#Region "IComparable Interface Members"
 
         Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
             If Not TypeOf obj Is ContractComparable Then Throw New ArgumentException("Type of pobj is not ContractComparable")
@@ -77,13 +75,13 @@ Namespace Contracts
             Return Contract.CompareContractSpecs(mContractSpec, DirectCast(obj, ContractComparable).ContractSpec, mSortKeys)
         End Function
 
-        '@================================================================================
-        ' XXXX Event Handlers
-        '@================================================================================
+#End Region
+
+#Region "XXXX Event Handlers"
         
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         Friend ReadOnly Property ContractSpec() As IContractSpecifier
             Get
@@ -91,13 +89,15 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#Region "Methods"
 
-    End Class
+#End Region
+
+#Region "Helper Functions"
+
+#End Region
+
+End Class
 End Namespace

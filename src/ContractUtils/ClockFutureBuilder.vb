@@ -29,31 +29,29 @@ Imports TWUtilities40
 Namespace Contracts
     Friend NotInheritable Class ClockFutureBuilder
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
         
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
+
+#Region "Events"
         
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#End Region
+
+#Region "Enums"
         
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
+
+#Region "Types"
         
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "ClockFutureBuilder"
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private WithEvents mFutureBuilder As FutureBuilder
 
@@ -66,9 +64,9 @@ Namespace Contracts
 
         Private mSelfRef As Object
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         'UPGRADE_NOTE: Class_Initialize was upgraded to Class_Initialize_Renamed. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"'
         Private Sub Class_Initialize_Renamed()
@@ -81,22 +79,22 @@ Namespace Contracts
             Class_Initialize_Renamed()
         End Sub
 
-        '@================================================================================
-        ' XXXX Interface Members
-        '@================================================================================
+#End Region
+
+#Region "XXXX Interface Members"
         
-        '@================================================================================
-        ' mFutureBuilder Event Handlers
-        '@================================================================================
+#End Region
+
+#Region "mFutureBuilder Event Handlers"
 
         Private Sub mFutureBuilder_Cancelled(ByRef ev As CancelledEventData) Handles mFutureBuilder.Cancelled
             mFutureWaiter.Clear()
             mFutureBuilder.Cancel()
         End Sub
 
-        '@================================================================================
-        ' mFutureWaiter Event Handlers
-        '@================================================================================
+#End Region
+
+#Region "mFutureWaiter Event Handlers"
 
         Private Sub mFutureWaiter_WaitCompleted(ByRef ev As FutureWaitCompletedEventData) Handles mFutureWaiter.WaitCompleted
             If ev.Future.IsPending Then Exit Sub
@@ -110,9 +108,9 @@ Namespace Contracts
             End If
         End Sub
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         Friend ReadOnly Property Future() As IFuture
             Get
@@ -120,9 +118,9 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Friend Sub Initialise(pContractFuture As IFuture, pIsSimulated As Boolean, pClockRate As Single)
             mIsSimulated = pIsSimulated
@@ -131,9 +129,9 @@ Namespace Contracts
             mFutureWaiter.Add(pContractFuture)
         End Sub
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
 
         Private Sub setupClock(pContract As IContract)
             If mIsSimulated Then
@@ -143,5 +141,7 @@ Namespace Contracts
             End If
             mFutureBuilder.Complete()
         End Sub
-    End Class
+#End Region
+
+End Class
 End Namespace

@@ -27,38 +27,36 @@
 Namespace Contracts
     Public NotInheritable Class ComboContractSpecBldr
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#Region "Events"
 
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
+
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "ComboContractSpecBldr"
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private mContractSpecifier As ContractSpecifier
         Private mComboLegs As ComboLegs
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Public Sub New()
             mContractSpecifier = New ContractSpecifier
@@ -67,17 +65,17 @@ Namespace Contracts
             mContractSpecifier.ComboLegs = mComboLegs
         End Sub
 
-        '@================================================================================
-        ' XXXX Interface Members
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' XXXX Event Handlers
-        '@================================================================================
+#Region "XXXX Interface Members"
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "XXXX Event Handlers"
+
+#End Region
+
+#Region "Properties"
 
         Public ReadOnly Property ContractSpecifier() As IContractSpecifier
             Get
@@ -85,9 +83,9 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Public Function AddLeg(contractSpec As IContractSpecifier, isBuyLeg As Boolean, ratio As Integer) As IComboleg
             Return mComboLegs.AddLeg(contractSpec, isBuyLeg, ratio)
@@ -97,8 +95,10 @@ Namespace Contracts
             mComboLegs.Remove(index)
         End Sub
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
+#End Region
+
     End Class
 End Namespace

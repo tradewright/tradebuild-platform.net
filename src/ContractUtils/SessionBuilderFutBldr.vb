@@ -31,31 +31,29 @@ Imports TWUtilities40
 Namespace Contracts
     Friend NotInheritable Class SessionBuilderFutBldr
 
-        '@================================================================================
-        ' Interfaces
-        '@================================================================================
+#Region "Interfaces"
 
-        '@================================================================================
-        ' Events
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Enums
-        '@================================================================================
+#Region "Events"
 
-        '@================================================================================
-        ' Types
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' Constants
-        '@================================================================================
+#Region "Enums"
+
+#End Region
+
+#Region "Types"
+
+#End Region
+
+#Region "Constants"
 
         Private Const ModuleName As String = "SessionBuilderFutBldr"
 
-        '@================================================================================
-        ' Member variables
-        '@================================================================================
+#End Region
+
+#Region "Member variables"
 
         Private WithEvents mFutureBuilder As New FutureBuilder
         Private WithEvents mFutureWaiter As New FutureWaiter
@@ -63,21 +61,21 @@ Namespace Contracts
 
         Private mSelfRef As Object
 
-        '@================================================================================
-        ' Constructors
-        '@================================================================================
+#End Region
+
+#Region "Constructors"
 
         Public Sub New()
             mSelfRef = Me
         End Sub
 
-        '@================================================================================
-        ' XXXX Interface Members
-        '@================================================================================
+#End Region
 
-        '@================================================================================
-        ' mFutureBuilder Event Handlers
-        '@================================================================================
+#Region "XXXX Interface Members"
+
+#End Region
+
+#Region "mFutureBuilder Event Handlers"
 
         Private Sub mFutureBuilder_Cancelled(ByRef ev As CancelledEventData) Handles mFutureBuilder.Cancelled
             mFutureWaiter.Clear()
@@ -86,9 +84,9 @@ Namespace Contracts
             mSelfRef = Nothing
         End Sub
 
-        '@================================================================================
-        ' mFutureWaiter Event Handlers
-        '@================================================================================
+#End Region
+
+#Region "mFutureWaiter Event Handlers"
 
         Private Sub mFutureWaiter_WaitCompleted(ByRef ev As FutureWaitCompletedEventData) Handles mFutureWaiter.WaitCompleted
             If Not ev.Future.IsAvailable Then Exit Sub
@@ -103,9 +101,9 @@ Namespace Contracts
             mSelfRef = Nothing
         End Sub
 
-        '@================================================================================
-        ' Properties
-        '@================================================================================
+#End Region
+
+#Region "Properties"
 
         Friend ReadOnly Property Future() As _IFuture
             Get
@@ -113,17 +111,19 @@ Namespace Contracts
             End Get
         End Property
 
-        '@================================================================================
-        ' Methods
-        '@================================================================================
+#End Region
+
+#Region "Methods"
 
         Friend Sub Initialise(pContractFuture As IFuture, pUseExchangeTimeZone As Boolean)
             mFutureWaiter.Add(pContractFuture)
             mUseExchangeTimeZone = pUseExchangeTimeZone
         End Sub
 
-        '@================================================================================
-        ' Helper Functions
-        '@================================================================================
+#End Region
+
+#Region "Helper Functions"
+#End Region
+
     End Class
 End Namespace
