@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C8ABAFE-2740-4013-933B-79E83A496DCB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TradeWright.Trading.UI.Trading</RootNamespace>
+    <AssemblyName>TradeBuild.TradingUI</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TradeBuild.TradingUI.xml</DocumentationFile>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <BaseAddress>972947456</BaseAddress>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DocumentationFile>TradeBuild.TradingUI.xml</DocumentationFile>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxChartSkil27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.AxChartSkil27.dll</HintPath>
+    </Reference>
+    <Reference Include="AxTradingUI27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.AxTradingUI27.dll</HintPath>
+    </Reference>
+    <Reference Include="BarUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.BarUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ChartSkil27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.ChartSkil27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ChartUtils27, Version=260.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.ChartUtils27.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtProps40, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.ExtProps40.dll</HintPath>
+    </Reference>
+    <Reference Include="HistDataUtils27, Version=318.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.HistDataUtils27.dll</HintPath>
+    </Reference>
+    <Reference Include="MarketDataUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.MarketDataUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC\stdole\7.0.3300.0__b03f5f7f11d50a3a\stdole.dll</HintPath>
+    </Reference>
+    <Reference Include="StudyUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.StudyUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="TickerUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TickerUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TickUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TickUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TimeframeUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TimeframeUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TWControls40">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TWControls40.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="TWUtilities40">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.TWUtilities40.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="WorkspaceUtils27">
+      <HintPath>C:\Program Files (x86)\TradeWright Software Systems\TradeBuild Platform 2.7\Bin\TradeWright.TradeBuild.ComInterop\Interop.WorkspaceUtils27.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChartControlToolsSupport.vb" />
+    <Compile Include="ChartControlToolstrip.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChartSpecifier.vb" />
+    <Compile Include="ChartControlTools.Designer.vb">
+      <DependentUpon>ChartControlTools.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ChartControlTools.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fApplyTemplate.Designer.vb">
+      <DependentUpon>fApplyTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fApplyTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fSaveAsTemplate.Designer.vb">
+      <DependentUpon>fSaveAsTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fSaveAsTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template.vb" />
+    <Compile Include="TemplateManager.vb" />
+    <Compile Include="fChartConfig.Designer.vb">
+      <DependentUpon>fChartConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fChartConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ISupportsTemplates.vb" />
+    <Compile Include="MultiChart.Designer.vb">
+      <DependentUpon>MultiChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MultiChart.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MultiChartBarFormatterPickerHandler.vb" />
+    <Compile Include="MultiChartStylePickerHandler.vb" />
+    <Compile Include="PriceFormatter.vb" />
+    <Compile Include="TemplateSelector.Designer.vb">
+      <DependentUpon>TemplateSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TickerBidAskHandler.vb" />
+    <Compile Include="TickersPanel.Designer.vb">
+      <DependentUpon>TickersPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TickersPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolstripChartControlTools.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MarketChart.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TickerGridConfigurer.vb">
+    </Compile>
+    <Compile Include="fTimePeriodSpecifier.Designer.vb">
+      <DependentUpon>fTimePeriodSpecifier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="fTimePeriodSpecifier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Globals.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TimePeriodSelector.Designer.vb">
+      <DependentUpon>TimePeriodSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TimePeriodSelector.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimePeriodSpecifier.Designer.vb">
+      <DependentUpon>TimePeriodSpecifier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TimePeriodSpecifier.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolStripTimePeriodSelector.Designer.vb">
+      <DependentUpon>ToolStripTimePeriodSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ToolStripTimePeriodSelector.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChartControlTools.resx">
+      <DependentUpon>ChartControlTools.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartControlToolstrip.resx">
+      <DependentUpon>ChartControlToolstrip.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fApplyTemplate.resx">
+      <DependentUpon>fApplyTemplate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fChartConfig.resx">
+      <DependentUpon>fChartConfig.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fSaveAsTemplate.resx">
+      <DependentUpon>fSaveAsTemplate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiChart.resx">
+      <DependentUpon>MultiChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fTimePeriodSpecifier.resx">
+      <DependentUpon>fTimePeriodSpecifier.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateSelector.resx">
+      <DependentUpon>TemplateSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TickersPanel.resx">
+      <DependentUpon>TickersPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimePeriodSelector.resx">
+      <DependentUpon>TimePeriodSelector.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimePeriodSpecifier.resx">
+      <DependentUpon>TimePeriodSpecifier.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="TradingUI.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BarFormatters\BarFormatters.vbproj">
+      <Project>{bb014ef0-6c39-41cb-8c68-fc7144060289}</Project>
+      <Name>BarFormatters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChartUtils\ChartUtils.vbproj">
+      <Project>{dea7a457-89e0-465a-9353-402ff185ce23}</Project>
+      <Name>ChartUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContractsUI\ContractsUI.vbproj">
+      <Project>{c9374203-ff8a-4e4f-8097-2ff197577812}</Project>
+      <Name>ContractsUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContractUtils\ContractUtils.vbproj">
+      <Project>{301a611a-0292-4466-a296-e6d310e433fe}</Project>
+      <Name>ContractUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneralUtils\GeneralUtils.vbproj">
+      <Project>{b68d9db7-2545-4233-8045-d8d30b4332de}</Project>
+      <Name>GeneralUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudiesUI\StudiesUI.vbproj">
+      <Project>{3cfb1d7f-6d85-4aab-af2f-91bd38bda14e}</Project>
+      <Name>StudiesUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!--
+  <ItemGroup>
+    <COMReference Include="BarFormatters27">
+      <Guid>{207421B5-F36A-4877-96ED-67B9C3B5AC6B}</Guid>
+      <VersionMajor>261</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="MSDATASRC">
+      <Guid>{7C0FFAB0-CD84-11D0-949A-00A0C91110ED}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="OrderUtils27">
+      <Guid>{70E21C0F-55E8-4775-ADB9-7D95B78DF4EB}</Guid>
+      <VersionMajor>304</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Scripting">
+      <Guid>{420B2830-E718-11CF-893D-00A0C9054228}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SessionUtils27">
+      <Guid>{35397E37-23B7-4B20-AC05-27DED8253B14}</Guid>
+      <VersionMajor>375</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="TickfileUtils27">
+      <Guid>{3614E717-8643-4665-B658-FCC19996E9BE}</Guid>
+      <VersionMajor>102</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="TradingUI27">
+      <Guid>{6C945B95-5FA7-4850-AAF3-2D2AA0476EE1}</Guid>
+      <VersionMajor>314</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBRUN">
+      <Guid>{EA544A21-C82D-11D1-A3E4-00A0C90AEA82}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>9</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
