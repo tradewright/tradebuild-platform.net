@@ -70,7 +70,7 @@ Public Module Declarators
 
 #Region "Methods"
 
-    'Public Function DeclareChart(Timeframe As String) As ResourceIdentifier)
+    'Public Function DeclareChart(Timeframe As String) As Chart
     '    Throw New NotSupportedException("Chart declaration not yet implemented")
     'End Function
 

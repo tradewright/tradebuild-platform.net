@@ -198,6 +198,10 @@ Public NotInheritable Class DefaultStrategyHost
         End Get
     End Property
 
+    Private Sub IStrategyHost_NotifyInitialisationCompleted() Implements IStrategyHost.NotifyInitialisationCompleted
+        mController.NotifyInitialisationCompleted()
+    End Sub
+
     Private Sub IStrategyHost_NotifyReplayCompleted() Implements IStrategyHost.NotifyReplayCompleted
         mController.NotifyReplayCompleted()
     End Sub

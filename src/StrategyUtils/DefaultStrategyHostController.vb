@@ -25,6 +25,7 @@
 #End Region
 
 Imports System.Collections.Generic
+Imports System.Runtime.InteropServices
 
 Imports StudyUtils27
 Imports TickerUtils27
@@ -35,6 +36,7 @@ Imports TWUtilities40
 
 Imports TradeWright.Trading.Utils.Contracts
 Imports TradeWright.Trading.Utils.Sessions
+Imports TradeWright.Trading.TradeBuild.AutoTradingEnvironment
 
 Public NotInheritable Class DefaultStrategyHostController
     Implements IGenericTickListener
@@ -146,8 +148,8 @@ Public NotInheritable Class DefaultStrategyHostController
                     mStrategyRunner.StartLiveData()
                 End If
             End If
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(IStateChangeListener_Change), NameOf(DefaultStrategyHostController))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -205,6 +207,10 @@ Public NotInheritable Class DefaultStrategyHostController
     Private Sub IStrategyHostController_NotifyBracketOrderProfile(Value As OrderUtils27.BracketOrderProfile) Implements IStrategyHostController.NotifyBracketOrderProfile
         mView.NotifyBracketOrderProfile(Value)
         showBracketOrderLine(Value)
+    End Sub
+
+    Private Sub IStrategyHostController_NotifyInitialisationCompleted() Implements IStrategyHostController.NotifyInitialisationCompleted
+        mView.NotifyInitialisationCompleted()
     End Sub
 
     Private Sub IStrategyHostController_NotifyPosition(pPosition As Integer) Implements IStrategyHostController.NotifyPosition

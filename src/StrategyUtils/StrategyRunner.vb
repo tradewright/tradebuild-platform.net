@@ -40,7 +40,7 @@ Imports TWUtilities40
 
 Imports TradeWright.Trading.Utils.Contracts
 Imports TradeWright.Trading.Utils.Sessions
-
+Imports System.Runtime.InteropServices
 
 Public NotInheritable Class StrategyRunner
     Implements IChangeListener
@@ -133,46 +133,50 @@ Public NotInheritable Class StrategyRunner
 #Region "IChangeListener Interface Members"
 
     Private Sub IChangeListener_Change(ByRef ev As ChangeEventData) Implements IChangeListener.Change
-        If TypeOf ev.Source Is IBracketOrder Then
-            If ev.ChangeType = BracketOrderChangeTypes.BracketOrderCreated Then Exit Sub
+        Try
+            If TypeOf ev.Source Is IBracketOrder Then
+                If ev.ChangeType = BracketOrderChangeTypes.BracketOrderCreated Then Exit Sub
 
-            Dim lBracketOrder = DirectCast(ev.Source, IBracketOrder)
-            Dim en = mBracketOrderNotificationRequests.GetEnumerator(lBracketOrder)
-            Do While en.MoveNext
-                Dim lRequest = en.Current
-                setStrategyRunner(lRequest.EventSink, lRequest.ResourceContext)
-                If ev.ChangeType = BracketOrderChangeTypes.BracketOrderCompleted Then
-                    lBracketOrder.RemoveChangeListener(Me)
-                    lRequest.EventSink.NotifyBracketOrderCompletion(GetResourceIdForBracketOrder(lBracketOrder))
-                ElseIf ev.ChangeType = BracketOrderChangeTypes.BracketOrderEntryOrderFilled Then
-                    lRequest.EventSink.NotifyBracketOrderFill(GetResourceIdForBracketOrder(lBracketOrder))
-                ElseIf ev.ChangeType = BracketOrderChangeTypes.BracketOrderStopLossOrderChanged Then
-                    lRequest.EventSink.NotifyBracketOrderStopLossAdjusted(GetResourceIdForBracketOrder(lBracketOrder))
-                End If
-                ClearStrategyRunner()
-            Loop
-
-        ElseIf TypeOf ev.Source Is PositionManager Then
-            Dim lPositionManager = DirectCast(ev.Source, PositionManager)
-            If ev.ChangeType = PositionManagerChangeTypes.PositionSizeChanged Then
-                If lPositionManager.PositionSize = 0 And lPositionManager.PendingPositionSize = 0 Then
-                    setStrategyRunner(mStrategy, mStrategyResourceContext)
-                    If lPositionManager.IsSimulated Then
-                        mStrategy.NotifyNoSimulatedPositions()
-                    Else
-                        mStrategy.NotifyNoLivePositions()
+                Dim lBracketOrder = DirectCast(ev.Source, IBracketOrder)
+                Dim en = mBracketOrderNotificationRequests.GetEnumerator(lBracketOrder)
+                Do While en.MoveNext
+                    Dim lRequest = en.Current
+                    setStrategyRunner(lRequest.EventSink, lRequest.ResourceContext)
+                    If ev.ChangeType = BracketOrderChangeTypes.BracketOrderCompleted Then
+                        lBracketOrder.RemoveChangeListener(Me)
+                        lRequest.EventSink.NotifyBracketOrderCompletion(GetBracketOrderFromCOMBracketOrder(lBracketOrder))
+                    ElseIf ev.ChangeType = BracketOrderChangeTypes.BracketOrderEntryOrderFilled Then
+                        lRequest.EventSink.NotifyBracketOrderFill(GetBracketOrderFromCOMBracketOrder(lBracketOrder))
+                    ElseIf ev.ChangeType = BracketOrderChangeTypes.BracketOrderStopLossOrderChanged Then
+                        lRequest.EventSink.NotifyBracketOrderStopLossAdjusted(GetBracketOrderFromCOMBracketOrder(lBracketOrder))
                     End If
                     ClearStrategyRunner()
+                Loop
+
+            ElseIf TypeOf ev.Source Is PositionManager Then
+                Dim lPositionManager = DirectCast(ev.Source, PositionManager)
+                If ev.ChangeType = PositionManagerChangeTypes.PositionSizeChanged Then
+                    If lPositionManager.PositionSize = 0 And lPositionManager.PendingPositionSize = 0 Then
+                        setStrategyRunner(mStrategy, mStrategyResourceContext)
+                        If lPositionManager.IsSimulated Then
+                            mStrategy.NotifyNoSimulatedPositions()
+                        Else
+                            mStrategy.NotifyNoLivePositions()
+                        End If
+                        ClearStrategyRunner()
+                    End If
+                End If
+            ElseIf TypeOf ev.Source Is OrderUtils27.OrderContext Then
+                Dim lOrderContext = DirectCast(ev.Source, OrderUtils27.OrderContext)
+                If lOrderContext.IsSimulated Then
+                    mStrategy.NotifyTradingReadinessChange()
+                Else
+                    mStrategy.NotifySimulatedTradingReadinessChange()
                 End If
             End If
-        ElseIf TypeOf ev.Source Is OrderUtils27.OrderContext Then
-            Dim lOrderContext = DirectCast(ev.Source, OrderUtils27.OrderContext)
-            If lOrderContext.IsSimulated Then
-                mStrategy.NotifyTradingReadinessChange()
-            Else
-                mStrategy.NotifySimulatedTradingReadinessChange()
-            End If
-        End If
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
+        End Try
     End Sub
 
 #End Region
@@ -199,8 +203,8 @@ Public NotInheritable Class StrategyRunner
             mContract = Utils.Contracts.Contract.FromCOM(DirectCast(mTicker.ContractFuture.Value, ContractUtils27._IContract))
             mSession = Session.FromCOM(DirectCast(mTicker.SessionFuture.Value, SessionUtils27.Session))
             mStrategyHost.TickerCreated(mTicker, mContract, mSession, mClock)
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(RunDeferredAction), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -227,8 +231,8 @@ Public NotInheritable Class StrategyRunner
 
                 setupLogging(lContract.Specifier.LocalSymbol)
             End If
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mFutureWaiter_WaitCompleted), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -240,32 +244,32 @@ Public NotInheritable Class StrategyRunner
         Try
             ev.Source = Me
             mStrategyHost.NotifyReplayEvent(ev)
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mReplayController_NotifyEvent), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
     Private Sub mReplayController_ReplayProgress(pTickfileTimestamp As Date, pEventsPlayed As Integer, pPercentComplete As Integer) Handles mReplayController.ReplayProgress
         Try
             mStrategyHost.NotifyReplayProgress(pTickfileTimestamp, pEventsPlayed, pPercentComplete)
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mReplayController_ReplayProgress), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
     Private Sub mReplayController_ReplayStarted() Handles mReplayController.ReplayStarted
         Try
             mStrategyHost.NotifyReplayStarted()
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mReplayController_ReplayStarted), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
     Private Sub mReplayController_TickfileCompleted(ByRef ev As TickfileEventData, pEventsPlayed As Integer) Handles mReplayController.TickfileCompleted
         Try
             mStrategyHost.NotifyTickfileCompleted(ev.Specifier, pEventsPlayed)
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mFutureWaiter_WaitCompleted), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -277,8 +281,8 @@ Public NotInheritable Class StrategyRunner
         Try
             mReplayController = Nothing
             mStrategyHost.NotifyReplayCompleted()
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mTickfileReplayTC_Completed), NameOf(StrategyRunner))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -312,8 +316,8 @@ Public NotInheritable Class StrategyRunner
         Return mPosnMgmtStrategyResourceContexts.Item(pFactory.Key)
     End Function
 
-    Public Function GetResourceIdForBracketOrder(pBracketOrder As _IBracketOrder) As AutoTradingEnvironment.BracketOrder
-        GetResourceIdForBracketOrder = mBracketOrderMapping.Item(pBracketOrder.Key)
+    Public Function GetBracketOrderFromCOMBracketOrder(pBracketOrder As _IBracketOrder) As AutoTradingEnvironment.BracketOrder
+        GetBracketOrderFromCOMBracketOrder = mBracketOrderMapping.Item(pBracketOrder.Key)
     End Function
 
     Friend Sub InitialisationCompleted()
@@ -335,7 +339,7 @@ Public NotInheritable Class StrategyRunner
         startReplayIfReady()
     End Sub
 
-    Friend Sub MapBracketOrderToResourceId(pBracketOrder As _IBracketOrder, pIdentifer As AutoTradingEnvironment.BracketOrder)
+    Friend Sub MapCOMBracketOrderToBracketOrder(pBracketOrder As _IBracketOrder, pIdentifer As AutoTradingEnvironment.BracketOrder)
         mBracketOrderMapping.Add(pBracketOrder.Key, pIdentifer)
     End Sub
 
@@ -427,6 +431,7 @@ Public NotInheritable Class StrategyRunner
         LogParameters(mParams)
         initialiseStrategy()
         initialisePositionManagementStrategyFactories()
+        mStrategyHost.NotifyInitialisationCompleted()
     End Sub
 
     Public Sub StopTesting()

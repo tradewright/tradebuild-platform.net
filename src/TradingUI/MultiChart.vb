@@ -729,7 +729,7 @@ Public Class MultiChart
     End Sub
 
     Private Sub forEachChart(action As Action(Of MarketChart))
-        forEach(Of MarketChart)(mCharts.Values, Function(c) c IsNot Nothing, action)
+        forEach(mCharts.Values, Function(c) c IsNot Nothing, action)
 
         Dim charts = From c In mCharts.Values
                      Where c IsNot Nothing

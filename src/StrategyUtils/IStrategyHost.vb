@@ -46,6 +46,7 @@ Public Interface IStrategyHost
     Sub AddTimeframe(pTimeframe As TimeframeUtils27.Timeframe)
     Sub ChartStudyValue(pStudy As StudyUtils27._IStudy, pValueName As String, pTimeframe As TimeframeUtils27.Timeframe)
     Sub ContractInvalid(pMessage As String)
+    Sub NotifyInitialisationCompleted()
     Sub NotifyReplayCompleted()
     Sub NotifyReplayEvent(ByRef ev As TWUtilities40.NotificationEventData)
     Sub NotifyTickfileCompleted(ByVal pTickfile As TickfileSpecifier, ByVal pEventsPlayed As Integer)

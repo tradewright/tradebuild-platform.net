@@ -200,7 +200,7 @@ Public Module Environment
         Return CLng(GetStringParameterValue(Name, CStr(DefaultValue)))
     End Function
 
-    Public Function GetShortParameterValue(Name As String, Optional DefaultValue As Single = 0) As Short
+    Public Function GetShortParameterValue(Name As String, Optional DefaultValue As Short = 0) As Short
         Return CShort(GetStringParameterValue(Name, CStr(DefaultValue)))
     End Function
 

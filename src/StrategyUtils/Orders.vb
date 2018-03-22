@@ -449,7 +449,7 @@ Public Module Orders
         End If
 
         buyOrSell = New AutoTradingEnvironment.BracketOrder(lBracketOrder)
-        CurrentStrategyRunner.MapBracketOrderToResourceId(lBracketOrder, buyOrSell)
+        CurrentStrategyRunner.MapCOMBracketOrderToBracketOrder(lBracketOrder, buyOrSell)
 
         requestNotification(lBracketOrder, pNotifyCompletion)
         createAttachedStrategies(lBracketOrder)
@@ -552,7 +552,6 @@ Public Module Orders
         If pBracketOrder Is Nothing Then pBracketOrder = CurrentResourceContext.PrimaryBracketOrder
 
         Dim lObj = pBracketOrder.BracketOrder
-        AssertArgument(TypeOf lObj Is _IBracketOrder, "ResourceIdentifier does not refer to a bracket order")
 
         Return DirectCast(lObj, _IBracketOrder)
     End Function

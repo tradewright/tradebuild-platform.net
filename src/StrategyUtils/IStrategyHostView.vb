@@ -112,6 +112,8 @@ Public Interface IStrategyHostView
 
     Sub NotifyEventsPlayed(Value As Integer)
 
+    Sub NotifyInitialisationCompleted()
+
     Sub NotifyMicrosecsPerEvent(Value As Integer)
 
     Sub NotifyNewTradeBar(pBarNumber As Integer, pTimestamp As Date)

@@ -25,6 +25,7 @@
 #End Region
 
 Imports System.Collections.Generic
+Imports System.Runtime.InteropServices
 
 Imports MarketDataUtils27
 Imports OrderUtils27
@@ -179,8 +180,8 @@ Public NotInheritable Class TradingContext
         Try
             If ev.ChangeType <> CollectionChangeTypes.CollItemAdded Then Exit Sub
             OrderUtils.CreateBracketProfitCalculator(DirectCast(ev.AffectedItem, _IBracketOrder), DirectCast(mTicker, _IMarketDataSource))
-        Catch e As Exception
-            NotifyUnhandledError(e, NameOf(mBracketOrders_CollectionChanged), NameOf(TradingContext))
+        Catch e As COMException
+            Throw New COMException(e.Message, e.ErrorCode) With {.Source = .Source & vbCrLf & e.StackTrace}
         End Try
     End Sub
 
@@ -311,7 +312,7 @@ Public NotInheritable Class TradingContext
 
         mStrategyRunner.SetCurrent(pStrategy, pResourceContext)
         mStrategyRunner.RequestBracketOrderNotification(pBracketOrder, pStrategy, pResourceContext)
-        pStrategy.Start(Me, mStrategyRunner.GetResourceIdForBracketOrder(pBracketOrder))
+        pStrategy.Start(Me, mStrategyRunner.GetBracketOrderFromCOMBracketOrder(pBracketOrder))
         mStrategyRunner.SetNotCurrent()
     End Sub
 

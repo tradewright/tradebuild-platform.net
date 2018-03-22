@@ -24,13 +24,7 @@
 
 #End Region
 
-Imports OrderUtils27
-
 Friend Module StrategyUtils
-
-#Region "Interfaces"
-
-#End Region
 
 #Region "Events"
 
@@ -60,10 +54,6 @@ Friend Module StrategyUtils
 #End Region
 
 #Region "Constructors"
-
-#End Region
-
-#Region "XXXX Interface Members"
 
 #End Region
 
@@ -103,15 +93,6 @@ Friend Module StrategyUtils
 #End Region
 
 #Region "Methods"
-
-    Friend Sub NotifyUnhandledError(e As Exception, procName As String, moduleName As String)
-        TWUtilities.UnhandledErrorHandler.Notify(procName,
-                                                moduleName,
-                                                NameOf(StrategyUtils),
-                                                pErrorNumber:=e.HResult,
-                                                pErrorDesc:=e.Message,
-                                                pErrorSource:=e.StackTrace)
-    End Sub
 
 #End Region
 

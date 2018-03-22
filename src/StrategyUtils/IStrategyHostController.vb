@@ -35,6 +35,7 @@ Public Interface IStrategyHostController
     Sub Initialise(pStrategyRunner As StrategyRunner, pModel As IStrategyHostModel, pView As IStrategyHostView)
     Function GetDefaultParameters(pStrategy As IStrategy, pPositionManagementStrategyFactories As System.Collections.Generic.List(Of IPositionManagementStrategyFactory)) As TWUtilities40.Parameters
     Sub NotifyBracketOrderProfile(Value As OrderUtils27.BracketOrderProfile)
+    Sub NotifyInitialisationCompleted()
     Sub NotifyPosition(pPosition As Integer)
     Sub NotifyReplayEvent(ByRef ev As TWUtilities40.NotificationEventData)
     Sub NotifyReplayCompleted()

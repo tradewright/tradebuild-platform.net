@@ -84,7 +84,7 @@ Public Module SMA
         Assert(Not SMA Is Nothing, "No SMA currently defined")
 
         Dim lObj = SMA.Study
-        AssertArgument(TypeOf lObj Is CommonStudiesLib27.SMA, "ResourceIdentifier does not refer to an SMA study")
+        AssertArgument(TypeOf lObj Is CommonStudiesLib27.SMA, "SMA does not refer to an SMA study")
 
         getSMA = DirectCast(lObj, CommonStudiesLib27.SMA)
     End Function

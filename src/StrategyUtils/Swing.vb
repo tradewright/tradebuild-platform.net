@@ -138,7 +138,7 @@ Public Module Swing
         Assert(Not Swing Is Nothing, "No Swing is currently defined")
 
         Dim lObj = Swing.Study
-        AssertArgument(TypeOf lObj Is CommonStudiesLib27.Swing, "ResourceIdentifier does not refer to a Swing study")
+        AssertArgument(TypeOf lObj Is CommonStudiesLib27.Swing, "Swing does not refer to a Swing study")
 
         getSwing = DirectCast(lObj, CommonStudiesLib27.Swing)
     End Function
