@@ -108,6 +108,11 @@ Friend Class fStrategyHost
 
 #Region "Types"
 
+    Friend Class ChartInfo
+        Friend Chart As UI.Trading.MarketChart
+        Friend BracketOrderLineSeries As LineSeries
+    End Class
+
 #End Region
 
 #Region "Member variables"
@@ -127,9 +132,7 @@ Friend Class fStrategyHost
 
     Private mProfitStudyBase As StudyBaseForDoubleInput
 
-    Private mPriceChartInitialTimePeriod As TimePeriod
-    Private mPriceChartPeriods As Periods
-    Private mPriceMarketCharts As New List(Of UI.Trading.MarketChart)
+    Private mPriceMarketCharts As New List(Of ChartInfo)
 
     Private mTradeStudyBase As StudyBaseForDoubleInput
 
@@ -141,13 +144,13 @@ Friend Class fStrategyHost
 
     Private mDetailsHidden As Boolean
 
-    Private mBracketOrderLineSeries As LineSeries
-
     Private mTheme As ITheme
 
     Private mChartStyle As ChartStyle
 
     Private mPriceFormatter As New Utils.Contracts.PriceFormatter()
+
+#End Region
 
 #Region "Form Event Handlers"
 
@@ -199,7 +202,7 @@ Friend Class fStrategyHost
 #Region "IStrategyHostView Interface Members"
 
     Public Sub AddStudyToChart(pChartIndex As Integer, pStudy As _IStudy, pStudyValueNames As Dictionary(Of String, Object)) Implements IStrategyHostView.AddStudyToChart
-        Dim lChartManager = mPriceMarketCharts(pChartIndex).ChartManager
+        Dim lChartManager = mPriceMarketCharts(pChartIndex).Chart.ChartManager
 
         Dim lStudyConfig = lChartManager.GetDefaultStudyConfiguration(pStudy.Name, pStudy.LibraryName)
         Debug.Assert(lStudyConfig IsNot Nothing, "Can't get default study configuration")
@@ -215,7 +218,7 @@ Friend Class fStrategyHost
     End Sub
 
     Public Function AddTimeframe(pTimeframe As TimeframeUtils27.Timeframe) As Integer Implements IStrategyHostView.AddTimeframe
-        mPriceMarketCharts.Add(PriceChart.AddRaw(pTimeframe,
+        Dim lChart = PriceChart.AddRaw(pTimeframe,
                                 mModel.Ticker.StudyBase.StudyManager,
                                 mModel.Contract.SessionStartTime,
                                 mModel.Contract.SessionEndTime,
@@ -224,18 +227,17 @@ Friend Class fStrategyHost
                                 mModel.Contract.Specifier.Exchange,
                                 mModel.Contract.TickSize,
                                 If(mModel.IsTickReplay, "", mModel.Contract.Specifier.LocalSymbol),
-                                Not mModel.IsTickReplay))
+                                Not mModel.IsTickReplay)
 
-        If mPriceChartInitialTimePeriod Is Nothing Then
-            mPriceChartInitialTimePeriod = pTimeframe.TimePeriod
-            mPriceChartPeriods = PriceChart.CurrentChart.Periods
-            mBracketOrderLineSeries = New LineSeries
-            PriceChart.CurrentChart.Regions.Item(ChartUtils.ChartRegionNamePrice).AddGraphicObjectSeries(DirectCast(mBracketOrderLineSeries, _IGraphicObjectSeries), LayerNumbers.LayerHighestUser)
-            mBracketOrderLineSeries.Thickness = 2
-            mBracketOrderLineSeries.ArrowEndStyle = ArrowStyles.ArrowClosed
-            mBracketOrderLineSeries.ArrowEndWidth = 8
-            mBracketOrderLineSeries.ArrowEndLength = 12
-        End If
+        Dim lBracketOrderLineSeries = New LineSeries
+        lChart.Regions.Item(ChartUtils.ChartRegionNamePrice).AddGraphicObjectSeries(DirectCast(lBracketOrderLineSeries, _IGraphicObjectSeries), LayerNumbers.LayerHighestUser)
+        lBracketOrderLineSeries.Thickness = 2
+        lBracketOrderLineSeries.ArrowEndStyle = ArrowStyles.ArrowClosed
+        lBracketOrderLineSeries.ArrowEndWidth = 8
+        lBracketOrderLineSeries.ArrowEndLength = 12
+
+        Dim chartInfo = New ChartInfo() With {.Chart = lChart, .BracketOrderLineSeries = lBracketOrderLineSeries}
+        mPriceMarketCharts.Add(chartInfo)
 
         Return mPriceMarketCharts.Count - 1
     End Function
@@ -246,11 +248,11 @@ Friend Class fStrategyHost
 
     Public Sub DisablePriceDrawing(Optional pTimeframeIndex As Integer = Nothing) Implements IStrategyHostView.DisablePriceDrawing
         If pTimeframeIndex = 0 Then
-            For Each chart In mPriceMarketCharts
-                chart.DisableDrawing()
+            For Each chartInfo In mPriceMarketCharts
+                chartInfo.Chart.DisableDrawing()
             Next
         Else
-            mPriceMarketCharts(pTimeframeIndex).DisableDrawing()
+            mPriceMarketCharts(pTimeframeIndex).Chart.DisableDrawing()
         End If
     End Sub
 
@@ -269,11 +271,11 @@ Friend Class fStrategyHost
 
     Public Sub EnablePriceDrawing(Optional pTimeframeIndex As Integer = Nothing) Implements IStrategyHostView.EnablePriceDrawing
         If pTimeframeIndex = 0 Then
-            For Each chart In mPriceMarketCharts
-                chart.EnableDrawing()
+            For Each chartInfo In mPriceMarketCharts
+                chartInfo.Chart.EnableDrawing()
             Next
         Else
-            mPriceMarketCharts(pTimeframeIndex).EnableDrawing()
+            mPriceMarketCharts(pTimeframeIndex).Chart.EnableDrawing()
         End If
     End Sub
 
@@ -341,6 +343,12 @@ Friend Class fStrategyHost
 
     Public Sub NotifyEventsPlayed(Value As Integer) Implements IStrategyHostView.NotifyEventsPlayed
         EventsPlayedLabel.Text = CStr(Value)
+    End Sub
+
+    Public Sub NotifyInitialisationCompleted() Implements IStrategyHostView.NotifyInitialisationCompleted
+        If Not mModel.ShowChart Then Exit Sub
+
+        PriceChart.SelectChart(mPriceMarketCharts(0).Chart)
     End Sub
 
     Public Sub NotifyMicrosecsPerEvent(Value As Integer) Implements IStrategyHostView.NotifyMicrosecsPerEvent
@@ -415,8 +423,8 @@ Friend Class fStrategyHost
         mTickSize = mContract.TickSize
         mSession = mModel.Session
 
-        For Each chart In mPriceMarketCharts
-            chart.StudyManager = mModel.Ticker.StudyBase.StudyManager
+        For Each chartInfo In mPriceMarketCharts
+            chartInfo.Chart.StudyManager = mModel.Ticker.StudyBase.StudyManager
         Next
 
         If mProfitStudyBase Is Nothing Then mProfitStudyBase = initialiseProfitChart()
@@ -438,6 +446,7 @@ Friend Class fStrategyHost
         Next
 
         mOverallProfit += mSessionProfit
+        mSessionProfit = 0
     End Sub
 
     Public Sub NotifyTradingStart() Implements IStrategyHostView.NotifyTradingStart
@@ -457,7 +466,6 @@ Friend Class fStrategyHost
 
     Public Sub ResetPriceChart() Implements IStrategyHostView.ResetPriceChart
         PriceChart.Clear()
-        mPriceChartInitialTimePeriod = Nothing
     End Sub
 
     Public Sub ResetProfitChart() Implements IStrategyHostView.ResetProfitChart
@@ -469,29 +477,32 @@ Friend Class fStrategyHost
     End Sub
 
     Public Sub ShowTradeLine(pStartTime As Date, pEndTime As Date, pEntryPrice As Double, pExitPrice As Double, pProfit As Double) Implements IStrategyHostView.ShowTradeLine
-        If Not mModel.ShowChart Then Exit Sub
-
-        Dim lBracketOrderLine = mBracketOrderLineSeries.Add
-        lBracketOrderLine.Point1 = ChartSkil.NewPoint(PriceChart.CurrentChart.GetXFromTimestamp(pStartTime), pEntryPrice)
-        lBracketOrderLine.Point2 = ChartSkil.NewPoint(PriceChart.CurrentChart.GetXFromTimestamp(pEndTime), pExitPrice)
-
         Static OleColorBlue As Integer = ColorTranslator.ToOle(Color.Blue)
         Static OleColorBlack As Integer = ColorTranslator.ToOle(Color.Black)
         Static OleColorRed As Integer = ColorTranslator.ToOle(Color.Red)
 
-        If pProfit > 0 Then
-            lBracketOrderLine.Color = OleColorBlue
-            lBracketOrderLine.ArrowEndColor = OleColorBlue
-            lBracketOrderLine.ArrowEndFillColor = OleColorBlue
-        ElseIf pProfit = 0 Then
-            lBracketOrderLine.Color = OleColorBlack
-            lBracketOrderLine.ArrowEndColor = OleColorBlack
-            lBracketOrderLine.ArrowEndFillColor = OleColorBlack
-        Else
-            lBracketOrderLine.Color = OleColorRed
-            lBracketOrderLine.ArrowEndColor = OleColorRed
-            lBracketOrderLine.ArrowEndFillColor = OleColorRed
-        End If
+        If Not mModel.ShowChart Then Exit Sub
+
+        For Each chartInfo In mPriceMarketCharts
+            Dim line = chartInfo.BracketOrderLineSeries.Add
+            line.Point1 = ChartSkil.NewPoint(chartInfo.Chart.GetXFromTimestamp(pStartTime), pEntryPrice)
+            line.Point2 = ChartSkil.NewPoint(chartInfo.Chart.GetXFromTimestamp(pEndTime), pExitPrice)
+
+            If pProfit > 0 Then
+                line.Color = OleColorBlue
+                line.ArrowEndColor = OleColorBlue
+                line.ArrowEndFillColor = OleColorBlue
+            ElseIf pProfit = 0 Then
+                line.Color = OleColorBlack
+                line.ArrowEndColor = OleColorBlack
+                line.ArrowEndFillColor = OleColorBlack
+            Else
+                line.Color = OleColorRed
+                line.ArrowEndColor = OleColorRed
+                line.ArrowEndFillColor = OleColorRed
+            End If
+        Next
+
     End Sub
 
     Public ReadOnly Property Strategy() As IStrategy Implements IStrategyHostView.Strategy
@@ -559,10 +570,13 @@ Friend Class fStrategyHost
     Private Sub BracketOrderList_DoubleClick(eventSender As System.Object, eventArgs As System.EventArgs) Handles BracketOrderList.DoubleClick
         If Not mModel.ShowChart Then Exit Sub
 
-        Dim ListItem = BracketOrderList.FocusedItem
-        Dim bracketOrderStartTime = CDate(ListItem.SubItems(BOListColumns.ColumnStartTime).Text)
-        Dim lPeriodNumber = mPriceChartPeriods.Item(bracketOrderStartTime).PeriodNumber
-        mPriceMarketCharts(0).LastVisiblePeriod = lPeriodNumber + CInt(Int((PriceChart.CurrentChart().LastVisiblePeriod - PriceChart.CurrentChart().FirstVisiblePeriod) / 2) - 1)
+        Dim bracketOrderStartTime = CDate(BracketOrderList.FocusedItem.SubItems(BOListColumns.ColumnStartTime).Text)
+
+        For Each chartInfo In mPriceMarketCharts
+            Dim lPeriodNumber = chartInfo.Chart.Periods.Item(bracketOrderStartTime).PeriodNumber
+            chartInfo.Chart.LastVisiblePeriod = lPeriodNumber + CInt(Int(chartInfo.Chart.LastVisiblePeriod - chartInfo.Chart.FirstVisiblePeriod) / 2) - 1
+        Next
+
         SSTab1.SelectedIndex = 0
     End Sub
 
@@ -882,8 +896,6 @@ Friend Class fStrategyHost
     Private Sub startprocessing()
         clearPerformanceFields()
 
-        mBracketOrderLineSeries = Nothing
-        mPriceChartPeriods = Nothing
         mPriceMarketCharts.Clear()
 
         If TickfileOrganiser1.TickfileCount <> 0 Then
@@ -904,8 +916,6 @@ Friend Class fStrategyHost
     Private Sub writeLogText(pMessage As String)
         LogText.AppendText(pMessage & vbCrLf)
     End Sub
-
-#End Region
 
 #End Region
 

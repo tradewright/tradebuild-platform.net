@@ -82,7 +82,7 @@ Module MainModule
 #Region "mUnhandledErrorHandler Event Handlers"
 
     Private Sub mUnhandledErrorHandler_UnhandledError(ByRef ev As ErrorEventData) Handles mUnhandledErrorHandler.UnhandledError
-        NotifyFatalError()
+        ShowFatalErrorMessage()
         System.Environment.FailFast(
 $"Error: 0x{Hex(ev.ErrorCode)} ({ev.ErrorCode})
 {ev.ErrorMessage}
@@ -208,7 +208,7 @@ At:
         End If
     End Sub
 
-    Public Sub NotifyFatalError()
+    Public Sub ShowFatalErrorMessage()
         MsgBox(
 $"A fatal error has occurred within {GetAppTitle()}. The program will close when you click the OK button.
 
