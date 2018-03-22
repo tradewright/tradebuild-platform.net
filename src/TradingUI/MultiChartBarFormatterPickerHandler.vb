@@ -91,7 +91,7 @@ Public Class MultiChartBarFormatterPickerHandler
     End Sub
 
     Private Sub setBarFormatterPicker(chart As MarketChart)
-        If chart Is Nothing OrElse chart.State <> MarketChart.ChartStates.ChartStateLoaded Then
+        If chart Is Nothing OrElse chart.State <> MarketChart.ChartState.Loaded Then
             mCurrentChartManager = Nothing
             mBarFormatterPicker.SelectItem("", "")
             mBarFormatterPicker.Enabled = False
@@ -105,9 +105,9 @@ Public Class MultiChartBarFormatterPickerHandler
 
     Private Sub mBarFormatterPicker_SelectedEntryChanged(sender As Object, e As System.EventArgs) Handles mBarFormatterPicker.SelectedEntryChanged
         If mMultiChart.CurrentChart IsNot Nothing Then
-            If mMultiChart.CurrentChart.State <> MarketChart.ChartStates.ChartStateLoaded Then Exit Sub
+            If mMultiChart.CurrentChart.State <> MarketChart.ChartState.Loaded Then Exit Sub
         ElseIf mMarketChart IsNot Nothing Then
-            If mMarketChart.State <> MarketChart.ChartStates.ChartStateLoaded Then Exit Sub
+            If mMarketChart.State <> MarketChart.ChartState.Loaded Then Exit Sub
         Else
             Exit Sub
         End If

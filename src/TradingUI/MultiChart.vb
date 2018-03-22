@@ -54,7 +54,7 @@ Public Class MultiChart
 
 #Region "Enums"
 
-    Enum MultiChartChangeTypes
+    Enum MultiChartChangeType
         SelectionChanged
         Added
         Removed
@@ -194,7 +194,7 @@ Public Class MultiChart
         switchToChart(targetChart)
 
         MyBase.OnClick(EventArgs.Empty)
-        fireChange(targetChart, MultiChartChangeTypes.SelectionChanged)
+        fireChange(targetChart, MultiChartChangeType.SelectionChanged)
     End Sub
 
     Private Sub ChartSelectorButton_LocationChanged(sender As System.Object, e As System.EventArgs)
@@ -223,10 +223,10 @@ Public Class MultiChart
 
     Private Sub MktChart_StateChange(ev As StateChangeEventData)
         Dim changedChart = CType(ev.Source, MarketChart)
-        If changedChart Is CurrentChart And ev.State = MarketChart.ChartStates.ChartStateLoaded Then
+        If changedChart Is CurrentChart And ev.State = MarketChart.ChartState.Loaded Then
             ChangeTimeframeToolStripButton.Enabled = True
         End If
-        OnChartStateChanged(New ChartStateChangedEventArgs(changedChart, DirectCast(ev.State, MarketChart.ChartStates)))
+        OnChartStateChanged(New ChartStateChangedEventArgs(changedChart, DirectCast(ev.State, MarketChart.ChartState)))
     End Sub
 
     Private Sub MktChart_TimeframeChange(sender As System.Object, ev As System.EventArgs)
@@ -234,7 +234,7 @@ Public Class MultiChart
         Dim tsb = CType(lChart.Tag, ToolStripButton)
         tsb.Text = lChart.TimePeriod.ToShortString
         tsb.ToolTipText = String.Format("Show {0} chart", lChart.TimePeriod.ToString)
-        fireChange(lChart, MultiChartChangeTypes.TimeframeChanged)
+        fireChange(lChart, MultiChartChangeType.TimeframeChanged)
     End Sub
 
     Private Sub MultiChartChartSelectorToolStrip_Click(sender As Object, e As EventArgs) Handles MultiChartChartSelectorToolStrip.Click
@@ -270,9 +270,9 @@ Public Class MultiChart
     Protected Overrides Sub OnVisibleChanged(e As System.EventArgs)
         If CurrentChart IsNot Nothing Then
             If MyBase.Visible Then
-                If CurrentChart.State = MarketChart.ChartStates.ChartStateLoaded Then CurrentChart.EnableDrawing()
+                If CurrentChart.State = MarketChart.ChartState.Loaded Then CurrentChart.EnableDrawing()
             Else
-                If CurrentChart.State = MarketChart.ChartStates.ChartStateLoaded Then CurrentChart.DisableDrawing()
+                If CurrentChart.State = MarketChart.ChartState.Loaded Then CurrentChart.DisableDrawing()
             End If
         End If
         MyBase.OnVisibleChanged(e)
@@ -285,6 +285,12 @@ Public Class MultiChart
 #End Region
 
 #Region "Properties"
+
+    Public ReadOnly Property Charts() As IEnumerable(Of MarketChart)
+        Get
+            Return mCharts.Values
+        End Get
+    End Property
 
     Public ReadOnly Property CurrentChart() As MarketChart
         Get
@@ -360,7 +366,7 @@ Public Class MultiChart
 
         ' we notify the add before calling ShowChart or ShowHistoric chart so that it's before
         ' the ChartStates.ChartStateInitialised and ChartStates.ChartStateLoaded events
-        fireChange(lchart, MultiChartChangeTypes.Added)
+        fireChange(lchart, MultiChartChangeType.Added)
 
         Dim lChartSpec = New ChartSpecifier(
                         CInt(IIf(pInitialNumberOfBars = -1, mSpec.InitialNumberOfBars, pInitialNumberOfBars)),
@@ -377,7 +383,7 @@ Public Class MultiChart
 
         tsb.PerformClick()
 
-        fireChange(lchart, MultiChartChangeTypes.SelectionChanged)
+        fireChange(lchart, MultiChartChangeType.SelectionChanged)
 
         Return lchart
     End Function
@@ -414,7 +420,7 @@ Public Class MultiChart
 
         ' we notify the add before calling ShowChart so that it's before
         ' the ChartStates.ChartStateInitialised and ChartStates.ChartStateLoaded events
-        fireChange(lChart, MultiChartChangeTypes.Added)
+        fireChange(lChart, MultiChartChangeType.Added)
 
         lChart.ShowChartRaw(pTimeframe,
                     mStyle,
@@ -431,7 +437,7 @@ Public Class MultiChart
 
         tsb.PerformClick()
 
-        fireChange(lChart, MultiChartChangeTypes.SelectionChanged)
+        fireChange(lChart, MultiChartChangeType.SelectionChanged)
 
         Return lChart
     End Function
@@ -461,7 +467,7 @@ Public Class MultiChart
                          End If
                      End Sub)
 
-        fireChange(CurrentChart, MultiChartChangeTypes.SymbolChanged)
+        fireChange(CurrentChart, MultiChartChangeType.SymbolChanged)
     End Sub
 
     Public Sub Clear()
@@ -681,7 +687,7 @@ Public Class MultiChart
         End If
         addSelectorButton(lChart.TimePeriod, lChart)
 
-        fireChange(lChart, MultiChartChangeTypes.Added)
+        fireChange(lChart, MultiChartChangeType.Added)
     End Sub
 
     Private Function addSelectorButton(timePeriod As TimePeriod, pChart As MarketChart) As ToolStripButton
@@ -716,7 +722,7 @@ Public Class MultiChart
         chart.Dispose()
     End Sub
 
-    Private Sub fireChange(chart As MarketChart, changeType As MultiChartChangeTypes)
+    Private Sub fireChange(chart As MarketChart, changeType As MultiChartChangeType)
         OnChange(New MultichartChangeEventArgs(chart, changeType))
     End Sub
 
@@ -751,7 +757,7 @@ Public Class MultiChart
     End Function
 
     Private Sub hideChart(chart As MarketChart)
-        If chart.State = MarketChart.ChartStates.ChartStateLoaded Then chart.DisableDrawing()
+        If chart.State = MarketChart.ChartState.Loaded Then chart.DisableDrawing()
         chart.Anchor = AnchorStyles.None
         chart.Dock = DockStyle.None
         chart.Visible = False
@@ -817,7 +823,7 @@ Public Class MultiChart
             If chartToRemove Is CurrentChart Then mCurrentChart = Nothing
             closeChart(chartToRemove)
 
-            fireChange(chartToRemove, MultiChartChangeTypes.Removed)
+            fireChange(chartToRemove, MultiChartChangeType.Removed)
 
         Catch ex As Exception
             gErrorLogger.Log(LogLevels.LogLevelSevere, ex.ToString)
@@ -869,7 +875,7 @@ Public Class MultiChart
         ' start the chart if it hasn't yet been started
         chart.Start()
 
-        If chart.State = MarketChart.ChartStates.ChartStateLoaded Then
+        If chart.State = MarketChart.ChartState.Loaded Then
             chart.EnableDrawing()
             ChangeTimeframeToolStripButton.Enabled = True
         Else
@@ -885,7 +891,7 @@ Public Class MultiChart
 
         If Not mIsRaw Then ToolStripTimePeriodSelector1.TimePeriod = chart.TimePeriod
 
-        fireChange(chart, MultiChartChangeTypes.SelectionChanged)
+        fireChange(chart, MultiChartChangeType.SelectionChanged)
     End Sub
 
     Private Sub showTimeframeSelector()
@@ -931,12 +937,12 @@ End Class
 Public Class ChartStateChangedEventArgs
     Inherits System.EventArgs
 
-    Public chart As MarketChart
-    Public state As MarketChart.ChartStates
+    Public ReadOnly Property Chart As MarketChart
+    Public ReadOnly Property State As MarketChart.ChartState
 
-    Friend Sub New(chart As MarketChart, state As MarketChart.ChartStates)
-        Me.chart = chart
-        Me.state = state
+    Friend Sub New(chart As MarketChart, state As MarketChart.ChartState)
+        Me.Chart = chart
+        Me.State = state
     End Sub
 #End Region
 
@@ -945,11 +951,11 @@ End Class
 Public Class MultichartChangeEventArgs
     Inherits System.EventArgs
 
-    Public chart As MarketChart
-    Public ChangeType As MultiChart.MultiChartChangeTypes
+    Public ReadOnly Property Chart As MarketChart
+    Public ReadOnly Property ChangeType As MultiChart.MultiChartChangeType
 
-    Friend Sub New(chart As MarketChart, ChangeType As MultiChart.MultiChartChangeTypes)
-        Me.chart = chart
+    Friend Sub New(chart As MarketChart, ChangeType As MultiChart.MultiChartChangeType)
+        Me.Chart = chart
         Me.ChangeType = ChangeType
     End Sub
 End Class

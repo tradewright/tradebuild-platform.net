@@ -42,15 +42,15 @@ Public Class ChartControlTools
     End Sub
 
     Private Sub mChart_StateChange(ev As StateChangeEventData)
-        Dim State = CType(ev.State, MarketChart.ChartStates)
+        Dim State = CType(ev.State, MarketChart.ChartState)
         Select Case State
-            Case MarketChart.ChartStates.ChartStateBlank
+            Case MarketChart.ChartState.Blank
 
-            Case MarketChart.ChartStates.ChartStateCreated
+            Case MarketChart.ChartState.Created
 
-            Case MarketChart.ChartStates.ChartStateInitialised
+            Case MarketChart.ChartState.Initialised
 
-            Case MarketChart.ChartStates.ChartStateLoaded
+            Case MarketChart.ChartState.Loaded
                 setupButtons()
                 Me.Enabled = True
         End Select
@@ -187,7 +187,7 @@ Public Class ChartControlTools
 
             AddHandler mChart.StateChange, AddressOf mChart_StateChange
 
-            If mChart.State = MarketChart.ChartStates.ChartStateLoaded Then
+            If mChart.State = MarketChart.ChartState.Loaded Then
                 setupButtons()
                 Me.Enabled = True
             Else

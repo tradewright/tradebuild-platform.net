@@ -104,8 +104,8 @@ Public NotInheritable Class TickersPanel
 
     Public WriteOnly Property ConfigurationSection As ConfigurationSection
         Set
-            If value Is mConfig Then Exit Property
-            mConfig = value
+            If Value Is mConfig Then Exit Property
+            mConfig = Value
             If mConfig Is Nothing Then Exit Property
             TickerGrid1.ConfigurationSection = mConfig.AddConfigurationSection(ConfigSectionTickerGrid)
             storeSettings()
@@ -117,11 +117,11 @@ Public NotInheritable Class TickersPanel
             Return mContractFilter
         End Get
         Set
-            If value Is Nothing Then
+            If Value Is Nothing Then
                 If mContractFilter IsNot Nothing Then mContractFilter.RemoveFromConfig()
                 mContractFilter = Nothing
             Else
-                mContractFilter = value
+                mContractFilter = Value
                 storeSettings()
             End If
         End Set

@@ -78,7 +78,7 @@ Public Class MultiChartStylePickerHandler
     End Sub
 
     Private Sub setStylePicker(chart As MarketChart)
-        If chart Is Nothing OrElse chart.State <> MarketChart.ChartStates.ChartStateLoaded Then
+        If chart Is Nothing OrElse chart.State <> MarketChart.ChartState.Loaded Then
             mStylePicker.SelectItem(Nothing)
             mStylePicker.Enabled = False
         Else
@@ -90,10 +90,10 @@ Public Class MultiChartStylePickerHandler
     Private Sub mStylePicker_SelectedEntryChanged(sender As Object, e As System.EventArgs) Handles mStylePicker.SelectedEntryChanged
         Dim chart As MarketChart
         If mMultiChart.CurrentChart IsNot Nothing Then
-            If mMultiChart.CurrentChart.State <> MarketChart.ChartStates.ChartStateLoaded Then Exit Sub
+            If mMultiChart.CurrentChart.State <> MarketChart.ChartState.Loaded Then Exit Sub
             chart = mMultiChart.CurrentChart
         ElseIf mMarketChart IsNot Nothing Then
-            If mMarketChart.State <> MarketChart.ChartStates.ChartStateLoaded Then Exit Sub
+            If mMarketChart.State <> MarketChart.ChartState.Loaded Then Exit Sub
             chart = mMarketChart
         Else
             Exit Sub

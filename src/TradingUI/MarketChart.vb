@@ -133,7 +133,7 @@ Public Class MarketChart
             Next
         End If
 
-        setState(ChartStates.ChartStateBlank)
+        setState(ChartState.Blank)
 
         AddHandler MyBase.ClickEvent, Sub(s, e) OnClick(EventArgs.Empty)
         AddHandler MyBase.DblCLick, Sub(s, e) OnDoubleClick(EventArgs.Empty)
@@ -184,39 +184,41 @@ Public Class MarketChart
     ''' Represents the current state of the chart.
     ''' </summary>
     ''' <remarks></remarks>
-    Public Enum ChartStates
+    Public Enum ChartState
         ''' <summary>
         ''' No chart has yet been started, or a chart has been cleared.
         ''' </summary>
-        ChartStateBlank
+        Blank
 
         ''' <summary>
         ''' The chart has been created, but the ticker has not yet become ready.
         ''' </summary>
-        ChartStateCreated
+        Created
 
         ''' <summary>
         ''' The ticker is now ready and historical data has been requested.
         ''' </summary>
-        ChartStateInitialised
+        Initialised
 
         ''' <summary>
         ''' Historic data has been fetched and is being added to the chart.
         ''' </summary>
-        ChartStateLoading
+        Loading
 
         ''' <summary>
         ''' All historic data has been added to the chart.
         ''' </summary>
-        ChartStateLoaded
+        Loaded
     End Enum
 
+    <Flags>
     Private Enum VB6MouseButtonConstants
         LeftButton = 1
         RightButton = 2
         MiddleButton = 4
     End Enum
 
+    <Flags>
     Private Enum VB6ShiftConstants
         AltMask = 4
         CtrlMask = 2
@@ -266,7 +268,7 @@ Public Class MarketChart
 
     Private mUpdatePerTick As Boolean = True
 
-    Private mState As ChartStates
+    Private mState As ChartState
 
     Private mIsHistoricChart As Boolean
 
@@ -412,7 +414,7 @@ Public Class MarketChart
             mStatusText.Text = ""
             MyBase.EnableDrawing()
 
-            setState(ChartStates.ChartStateLoaded)
+            setState(ChartState.Loaded)
         Catch e As Exception
             NotifyUnhandledError(e, NameOf(mTimeframe_BarsLoaded), NameOf(MarketChart))
         End Try
@@ -491,7 +493,7 @@ Public Class MarketChart
     End Property
 
     <Browsable(False)>
-    Public Shadows ReadOnly Property State() As ChartStates
+    Public Shadows ReadOnly Property State() As ChartState
         Get
             Return mState
         End Get
@@ -566,7 +568,7 @@ Public Class MarketChart
         mTimeframes = pTimeframes
         setStudyManager(mTimeframes.StudyBase.StudyManager)
 
-        If State = ChartStates.ChartStateBlank Then Exit Sub
+        If State = ChartState.Blank Then Exit Sub
 
         mDeferStart = deferStart
 
@@ -577,7 +579,7 @@ Public Class MarketChart
 
         mChartManager.ClearChart()
 
-        setState(ChartStates.ChartStateBlank)
+        setState(ChartState.Blank)
 
         initialiseChart(mChartSpec.IncludeBarsOutsideSession)
         If Not mDeferStart Then
@@ -591,7 +593,7 @@ Public Class MarketChart
     Public Sub ChangeTimeframe(newTimePeriod As TimePeriod)
         gDiagLogger.Log($"Changing timeframe for chart to {newTimePeriod.ToString()}", NameOf(ChangeTimeframe), ModuleName)
 
-        If State <> ChartStates.ChartStateLoaded Then Throw New InvalidOperationException("Can't change timeframe until chart is loaded")
+        If State <> ChartState.Loaded Then Throw New InvalidOperationException("Can't change timeframe until chart is loaded")
 
         Dim baseStudyConfig = mChartManager.BaseStudyConfiguration
 
@@ -600,7 +602,7 @@ Public Class MarketChart
 
         mChartManager.ClearChart()
 
-        setState(ChartStates.ChartStateBlank)
+        setState(ChartState.Blank)
 
         mTimePeriod = newTimePeriod
         mConfig?.SetSetting(ConfigSettingTimePeriod, mTimePeriod.ToString)
@@ -760,7 +762,7 @@ Public Class MarketChart
         If pBarFormatterLibraryName <> "" And pBarFormatterLibManager Is Nothing Then Throw New ArgumentException("If pBarFormatterLibraryName is not blank then pBarFormatterLibManager must be supplied")
         If (pBarFormatterLibraryName <> "" And pBarFormatterFactoryName = "") Or (pBarFormatterLibraryName = "" And pBarFormatterFactoryName <> "") Then Throw New ArgumentException("pBarFormatterLibraryName and pBarFormatterFactoryName must both be blank or non-blank")
 
-        setState(ChartStates.ChartStateBlank)
+        setState(ChartState.Blank)
 
         If Not mTimeframes Is Nothing Then
             mInitialised = False
@@ -825,7 +827,7 @@ Public Class MarketChart
         If pBarFormatterLibraryName <> "" And pBarFormatterLibManager Is Nothing Then Throw New ArgumentException("If pBarFormatterLibraryName is not blank then pBarFormatterLibManager must be supplied")
         If (pBarFormatterLibraryName <> "" And pBarFormatterFactoryName = "") Or (pBarFormatterLibraryName = "" And pBarFormatterFactoryName <> "") Then Throw New ArgumentException("pBarFormatterLibraryName and pBarFormatterFactoryName must both be blank or non-blank")
 
-        setState(ChartStates.ChartStateBlank)
+        setState(ChartState.Blank)
 
         mBarFormatterLibManager = pBarFormatterLibManager
 
@@ -849,7 +851,7 @@ Public Class MarketChart
     End Sub
 
     Public Sub Start()
-        If Not (mDeferStart And mState = ChartStates.ChartStateCreated) Then Exit Sub
+        If Not (mDeferStart And mState = ChartState.Created) Then Exit Sub
         mDeferStart = False
         createTimeframe()
         prepareChart()
@@ -951,7 +953,7 @@ Public Class MarketChart
         setStatusText()
         EnableDrawing()
 
-        setState(ChartStates.ChartStateCreated)
+        setState(ChartState.Created)
     End Sub
 
     Private Sub loadchart()
@@ -997,19 +999,19 @@ Public Class MarketChart
 
         If mIsRaw Then
             MyBase.EnableDrawing()
-            setState(ChartStates.ChartStateInitialised)
+            setState(ChartState.Initialised)
             mStatusText.Text = ""
-            setState(ChartStates.ChartStateLoaded)
+            setState(ChartState.Loaded)
         ElseIf mTimeframe.State <> TimeframeStates.TimeframeStateLoaded Then
             mStatusText.Text = "Fetching historical data"
-            setState(ChartStates.ChartStateInitialised)
+            setState(ChartState.Initialised)
             MyBase.EnableDrawing()    ' causes the loading text to appear
             MyBase.DisableDrawing()
         Else
             MyBase.EnableDrawing()
-            setState(ChartStates.ChartStateInitialised)
+            setState(ChartState.Initialised)
             mStatusText.Text = ""
-            setState(ChartStates.ChartStateLoaded)
+            setState(ChartState.Loaded)
         End If
     End Sub
 
@@ -1061,7 +1063,7 @@ Public Class MarketChart
         MyBase.SessionStartTime = COMStartOfDay + mSessionStartTime
     End Sub
 
-    Private Sub setState(value As ChartStates)
+    Private Sub setState(value As ChartState)
         Dim stateEv As StateChangeEventData
         mState = value
         stateEv.State = mState
