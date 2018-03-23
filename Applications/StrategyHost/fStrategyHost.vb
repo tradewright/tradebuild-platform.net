@@ -604,7 +604,7 @@ Friend Class fStrategyHost
     End Sub
 
     Private Sub PriceChart_Change(sender As Object, e As MultichartChangeEventArgs) Handles PriceChart.Change
-        If e.ChangeType = Trading.UI.Trading.MultiChart.MultiChartChangeTypes.SelectionChanged Then
+        If e.ChangeType = Trading.UI.Trading.MultiChart.MultiChartChangeType.SelectionChanged Then
             ChartControlToolstrip.Chart = PriceChart.CurrentChart
         End If
     End Sub
