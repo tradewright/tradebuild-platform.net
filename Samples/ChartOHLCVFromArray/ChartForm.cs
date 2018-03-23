@@ -145,6 +145,11 @@ namespace ChartOHLCVFromArray
             this.AcceptButton = ClearChartButton;
         }
 
+        private void ManageChartStylesButton_Click(object sender, EventArgs e) {
+            var f = new ChartStylesOrganizer();
+            f.Show(this);
+        }
+
         private void ChartStylesCombo_SelectedIndexChanged(object sender, EventArgs e) {
             Chart.Style = Globals.ChartSkil.ChartStylesManager.Item((string)ChartStylesCombo.SelectedItem);
             Chart.ChartBackColor = ColorTranslator.FromOle(Chart.Style.DefaultRegionStyle.get_BackGradientFillColors()[0]);

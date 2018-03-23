@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ClearChartButton = new System.Windows.Forms.Button();
             this.UpdateBarsCheck = new System.Windows.Forms.CheckBox();
+            this.ManageChartStylesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartToolbar)).BeginInit();
             this.SuspendLayout();
@@ -132,12 +133,24 @@
             this.UpdateBarsCheck.Text = "Update chart while loading bars";
             this.UpdateBarsCheck.UseVisualStyleBackColor = true;
             // 
+            // ManageChartStylesButton
+            // 
+            this.ManageChartStylesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ManageChartStylesButton.Location = new System.Drawing.Point(12, 527);
+            this.ManageChartStylesButton.Name = "ManageChartStylesButton";
+            this.ManageChartStylesButton.Size = new System.Drawing.Size(106, 51);
+            this.ManageChartStylesButton.TabIndex = 10;
+            this.ManageChartStylesButton.Text = "Manage chart styles...";
+            this.ManageChartStylesButton.UseVisualStyleBackColor = true;
+            this.ManageChartStylesButton.Click += new System.EventHandler(this.ManageChartStylesButton_Click);
+            // 
             // ChartForm
             // 
             this.AcceptButton = this.LoadDataButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 640);
+            this.Controls.Add(this.ManageChartStylesButton);
             this.Controls.Add(this.UpdateBarsCheck);
             this.Controls.Add(this.ClearChartButton);
             this.Controls.Add(this.label1);
@@ -167,6 +180,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ClearChartButton;
         private System.Windows.Forms.CheckBox UpdateBarsCheck;
+        private System.Windows.Forms.Button ManageChartStylesButton;
     }
 }
 

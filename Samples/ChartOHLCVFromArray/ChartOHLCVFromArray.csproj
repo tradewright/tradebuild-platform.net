@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ChartOHLCVFromArray</RootNamespace>
     <AssemblyName>ChartOHLCVFromArray</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -66,8 +66,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TradeBuild.TradingUI">
-      <HintPath>..\..\src\TradingUI\bin\Debug\TradeBuild.TradingUI.dll</HintPath>
+    <Reference Include="Tradebuild.ChartUtils">
+      <HintPath>..\..\src\ChartUtils\bin\Debug\Tradebuild.ChartUtils.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +78,12 @@
     <Compile Include="ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChartStylesOrganizer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartStylesOrganizer.Designer.cs">
+      <DependentUpon>ChartStylesOrganizer.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataGenerator.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="IndicatorValue.cs" />
@@ -87,6 +93,9 @@
     <EmbeddedResource Include="ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartStylesOrganizer.resx">
+      <DependentUpon>ChartStylesOrganizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
